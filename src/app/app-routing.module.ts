@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { LoginAndRegisterComponent } from './components/login-and-register/login-and-register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -26,6 +27,10 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'adminDashboard',
+    component: AdminDashboardComponent
   }
 ];
 

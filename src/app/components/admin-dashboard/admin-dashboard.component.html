@@ -1,0 +1,17 @@
+
+<div class="main">
+    <div class="left">
+        <div class="filter" *ngIf="shopList && locationList">
+            <app-admin-dashboard-filters [shopList] = 'shopList' [locationList] = 'locationList'></app-admin-dashboard-filters>
+        </div>
+        <div class="tables"></div>
+    </div>
+    <div class="right">
+        <div class="skuList mat-elevation-z2">
+            <app-sku-table [data]="skuList"></app-sku-table>
+        </div>
+        <div class="shopList mat-elevation-z2">
+            <app-shop-table [data]="shopList"></app-shop-table>
+        </div>
+    </div>
+</div>

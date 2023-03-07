@@ -12,7 +12,7 @@ import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.
 })
 export class AddSkuComponent implements OnInit {
   skuList!: any
-  displayedColumns: Array<string> = ['no', 'name', 'company']
+  
   addSkuName: string = ""
   addCompanyName: string = ""
   companySearchBoxData: string = ""

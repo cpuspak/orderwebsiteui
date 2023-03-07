@@ -12,7 +12,7 @@ import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.
 export class AddShopComponent {
   shopList!: any
   // displayedColumns: Array<string> = ['no', 'name', 'address', 'location','phone']
-  displayedColumns: Array<string> = ['name','location']
+  
   addShopName: string = ""
   addPhone: string = ""
   addAddress: string = ""

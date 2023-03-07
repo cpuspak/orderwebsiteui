@@ -34,7 +34,14 @@ import { ItemComponent } from './components/item/item.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog'
-import { MatSelectModule } from '@angular/material/select'
+import { MatSelectModule } from '@angular/material/select';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { ShopTableComponent } from './components/shop-table/shop-table.component';
+import { SkuTableComponent } from './components/sku-table/sku-table.component';
+import { AdminDashboardFiltersComponent } from './components/admin-dashboard-filters/admin-dashboard-filters.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 
 
@@ -52,7 +59,11 @@ import { MatSelectModule } from '@angular/material/select'
     AddOrderComponent,
     OrderComponent,
     ItemComponent,
-    AddItemComponent
+    AddItemComponent,
+    AdminDashboardComponent,
+    ShopTableComponent,
+    SkuTableComponent,
+    AdminDashboardFiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +85,9 @@ import { MatSelectModule } from '@angular/material/select'
     MatExpansionModule,
     MatAutocompleteModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
