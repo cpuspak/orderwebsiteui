@@ -1,0 +1,11 @@
+.addItem {
+    max-height: 50vh;
+    max-width: 60vw;
+    padding: 10px;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

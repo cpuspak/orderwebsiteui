@@ -1,0 +1,11 @@
+
+
+.addOrder {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.orderList {
+    height: 70vh;
+    overflow-y: auto;
+}

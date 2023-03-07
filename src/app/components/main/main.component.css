@@ -1,0 +1,12 @@
+mat-sidenav {
+    width: 200px;
+}
+.mainComponent {
+    overflow-y: hidden;
+}
+
+.defaultPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,38 @@
+.loginCard {
+    width: 50vw;
+    height: 40vh;
+    max-width: 500px;
+    padding: 5px;
+    min-height: 300px;
+    min-width: 350px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+
+.loginCardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+    
+}
+
+.loginFormField {
+    max-width: 450px;
+    min-width: 300px;
+    
+}
+
+.passwordFormField {
+    max-width: 450px;
+    min-width: 300px;
+}
+
+.loginUser {
+    align-self: center;
+    width: 50px;
+    height: 50px;
+}

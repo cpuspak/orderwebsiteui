@@ -1,0 +1,39 @@
+
+<!-- <mat-card>
+    OrderId - {{orderId}}
+    ShopName - {{shopName}}
+    CreateTime - {{createTime}}
+</mat-card> -->
+
+<mat-expansion-panel (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+        <div class="titleRow">
+            <span>Order#{{orderId}}</span>
+            
+        </div>
+    </mat-panel-title>
+    <mat-panel-description>
+        <div *ngIf="!panelOpenState">
+            <span *ngIf="items">Total items - {{items.length}},</span>&nbsp;
+            <span>ShopName - {{shopName}},</span>&nbsp;
+            <span>CreatedTime - {{createTime}}</span>&nbsp;
+        </div>
+    </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!-- <app-add-item [orderId]="orderId" (newItemAddedEvent)="refreshItemsList(orderId)"></app-add-item> -->
+    <button (click)="openAddItemDialog()" mat-button style="background-color: blue; color: white;">Add Item</button>
+    <div *ngFor="let element of items">
+        <app-item 
+            [itemId]="element.ItemID" 
+            [productName]="element.ProductName" 
+            [quantity]="element.Quantity" 
+            [createdTime]="element.CreatedTime"
+            >
+        </app-item><br>
+    </div>
+
+    <!-- <button mat-mini-fab style="margin-top: 5px;" ()>+</button> -->
+    <!-- <button mat-button style="background-color: blue; color: white;" (click)="editPopup($event)">Edit</button> -->
+</mat-expansion-panel>

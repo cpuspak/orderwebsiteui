@@ -1,0 +1,40 @@
+
+<div class="addItem">
+    <form [formGroup]="skuNameSearchFormGroup">
+        <mat-form-field>
+            <mat-label for="skuName">SKUName:</mat-label> 
+            <input formControlName="skuNameFormControl" matInput name="skuName" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="skuNameSearchBoxData" required>
+                    
+            <mat-autocomplete #autocompleteLink="matAutocomplete">
+                <mat-option *ngFor="let filteredSkuName of filteredSkuNames"
+                [id]="filteredSkuName.SKUID" 
+                (click)="getSkuId($event, filteredSkuName.SKUID)"
+                [value]="filteredSkuName.SKUName"
+                >
+                    <!-- <app-participant-search-tab 
+                        class="parentClass"
+                        [participantName]="filteredParticipant.username"
+                    >
+                    </app-participant-search-tab> -->
+                    {{filteredSkuName.SKUName}}
+                </mat-option>
+            </mat-autocomplete>
+        
+            
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label for="quantity">Quantity:</mat-label>
+            <input matInput formControlName="quantityFormControl" type="text" name="quantity" [(ngModel)]="Quantity" required>
+        </mat-form-field><br>
+    
+    </form><br>
+    
+    
+    
+    
+    <div class="buttonDiv">
+        <button (click)="createItem(orderId, SkuID, Quantity)" mat-raised-button [disabled]="!skuNameSearchFormGroup.valid || !SkuID">Add Item</button>
+        <button (click)="closeDialog()" mat-raised-button>Cancel</button>
+    </div>
+    
+</div>

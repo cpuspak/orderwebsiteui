@@ -1,0 +1,1 @@
+export const backendUrl: string = "https://sg-app-ojo3.onrender.com/"

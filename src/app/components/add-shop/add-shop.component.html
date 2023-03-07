@@ -1,0 +1,76 @@
+
+
+<div class="addShop">
+  <form [formGroup]="locationSearchFormGroup">
+    <mat-form-field>
+      <mat-label for="name">Shop Name:</mat-label>
+      <input type="text" matInput formControlName="shopNameFormControl" name="Name" type="text" [(ngModel)]="addShopName" required>
+    </mat-form-field><br>
+    <mat-form-field>
+      <mat-label for="phone">Phone:</mat-label>
+      <input type="text" formControlName="phoneFormControl" matInput name="phone" type="text" [(ngModel)]="addPhone" required>
+    </mat-form-field><br>
+    <mat-form-field>
+      <mat-label for="address">Address :</mat-label>
+      <input type="text" formControlName="addressFormControl" matInput name="address" type="text" [(ngModel)]="addAddress" required>
+    </mat-form-field><br>
+    <mat-form-field>
+      <mat-label for="location">Location :</mat-label>
+      <input formControlName="locationFormControl" matInput name="location" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="locationSearchBoxData" required>
+            
+            <mat-autocomplete #autocompleteLink="matAutocomplete">
+                <mat-option *ngFor="let filteredLocation of filteredLocations" 
+                [value]="filteredLocation.LocationName" 
+                [id]="filteredLocation.LocationName" 
+                >
+                    <!-- <app-participant-search-tab 
+                        class="parentClass"
+                        [participantName]="filteredParticipant.username"
+                    >
+                    </app-participant-search-tab> -->
+                    {{filteredLocation.LocationName}}
+                </mat-option>
+            </mat-autocomplete>
+    </mat-form-field><br>
+    <button mat-raised-button (click)="addShop(addShopName, addPhone, addAddress, locationSearchBoxData)" [disabled]="!locationSearchFormGroup.valid">AddShop</button>
+  </form>
+  
+  
+  
+  
+  
+  
+  <table mat-table [dataSource]="shopList" class="mat-elevation-z8">
+
+    <!-- <ng-container matColumnDef="no">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.ShopID}} </td>
+    </ng-container> -->
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.ShopName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef> Location </th>
+      <td mat-cell *matCellDef="let element"> {{element.ShopLocation}} </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.ShopPhone}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.ShopAddress}} </td>
+    </ng-container> -->
+  
+    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+</div>

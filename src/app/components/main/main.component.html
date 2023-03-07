@@ -1,0 +1,28 @@
+<div class="mainComponent">
+  <app-navbar [sideNav]=this.drawer fixed-top></app-navbar>
+  <mat-sidenav-container class="sidenav-container" [hasBackdrop]="false">
+      <mat-sidenav #drawer [fixedInViewport]="true" [fixedTopGap]=65 [fixedBottomGap]=0 mode="over">
+        <mat-nav-list>
+          <mat-list-item (click)="changeSelectedCategory('addSku')">
+            Add SKUs
+          </mat-list-item>
+          <mat-list-item (click)="changeSelectedCategory('addShop')">
+            Add Shops
+          </mat-list-item>
+          <mat-list-item (click)="changeSelectedCategory('addOrder')">
+            Add Orders
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <container-element [ngSwitch]="selectedCategory">
+          <div *ngSwitchCase="'addSku'"><app-add-sku></app-add-sku></div>
+          <div *ngSwitchCase="'addShop'"><app-add-shop></app-add-shop></div>
+          <div *ngSwitchCase="'addOrder'"><app-add-order></app-add-order></div>
+          <div *ngSwitchDefault class="defaultPage">
+            Welcome {{userNameAndExp.userName}}
+          </div>
+      </container-element>
+      </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

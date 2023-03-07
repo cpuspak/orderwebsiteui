@@ -1,0 +1,8 @@
+/* p {
+    height: calc(100vh - 100px);
+} */
+
+.addShop {
+    height: 90vh;
+    overflow-y: auto;
+}

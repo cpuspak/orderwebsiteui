@@ -1,0 +1,9 @@
+/* p {
+    height: calc(100vh - 100px);
+} */
+
+
+.addSku {
+    height: 90vh;
+    overflow-y: auto;
+}
