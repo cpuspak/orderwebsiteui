@@ -48,5 +48,22 @@ export class DataFetchService {
     
   }
 
+  public fetchAdminDashboardData(shopIdList: any, startDate: Date, endDate: Date) {
+    console.log(shopIdList)
+    return this.http.post(backendUrl+"/admin_dashboard",{
+      "shops": shopIdList,
+      "start": startDate,
+      "end": endDate
+    })
+  }
+
+  public fetchAdminDashboardPdfData() {
+    return fetch(backendUrl+"/pdf")
+    
+  }
+
+  // public fetch 
+
+  
 
 }

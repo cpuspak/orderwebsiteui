@@ -2,7 +2,7 @@
     height: calc(100vh - 100px);
 } */
 
-.addShop {
-    height: 90vh;
+.shopList {
+    height: 45vh;
     overflow-y: auto;
 }

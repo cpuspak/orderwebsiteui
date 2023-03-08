@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginAndRegisterComponent } from './components/login-and-register/login-and-register.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { AdminComponent } from './components/admin/admin.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -41,6 +40,7 @@ import { SkuTableComponent } from './components/sku-table/sku-table.component';
 import { AdminDashboardFiltersComponent } from './components/admin-dashboard-filters/admin-dashboard-filters.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AdminDashboardTablesComponent } from './components/admin-dashboard-tables/admin-dashboard-tables.component';
 
 
 
@@ -52,7 +52,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     MainComponent,
     RegisterComponent,
     LoginAndRegisterComponent,
-    AdminComponent,
     NavbarComponent,
     AddSkuComponent,
     AddShopComponent,
@@ -63,7 +62,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     AdminDashboardComponent,
     ShopTableComponent,
     SkuTableComponent,
-    AdminDashboardFiltersComponent
+    AdminDashboardFiltersComponent,
+    AdminDashboardTablesComponent
   ],
   imports: [
     BrowserModule,

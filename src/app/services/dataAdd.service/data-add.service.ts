@@ -9,8 +9,8 @@ export class DataAddService {
 
   constructor(private http: HttpClient) { }
 
-  public addSku(skuName: string, companyName: string) {
-    return this.http.post(backendUrl+"/add_sku", {"ProductName": skuName, "CompanyName": companyName})
+  public addSku(skuName: string, companyName: string, price: number) {
+    return this.http.post(backendUrl+"/add_sku", {"ProductName": skuName, "CompanyName": companyName, "Price": price})
   }
 
   public addShop(shopName: string, phone: string, address: string, location: string) {

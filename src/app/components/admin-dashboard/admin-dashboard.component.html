@@ -1,10 +1,19 @@
 
 <div class="main">
     <div class="left">
-        <div class="filter" *ngIf="shopList && locationList">
-            <app-admin-dashboard-filters [shopList] = 'shopList' [locationList] = 'locationList'></app-admin-dashboard-filters>
+        <div class="filter" *ngIf="locationList"><!-- *ngIf="shopList && locationList">-->
+            <app-admin-dashboard-filters [shopListTotal] = 'shopList'
+            [locationList] = 'locationList' 
+            (filterDataEvent)="filterData($event)"
+            (downloadSummaryPDFEvent)="downloadSummaryPDF($event)"
+            ></app-admin-dashboard-filters>
         </div>
-        <div class="tables"></div>
+        <div class="tables">
+            <div class="table mat-elevation-z2" *ngFor="let element of adminDashboardData">
+                <app-admin-dashboard-tables [tableHeaders]="element.header" [items]="element.items"></app-admin-dashboard-tables>
+            </div>
+            
+        </div>
     </div>
     <div class="right">
         <div class="skuList mat-elevation-z2">

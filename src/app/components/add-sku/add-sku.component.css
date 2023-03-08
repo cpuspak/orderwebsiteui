@@ -3,7 +3,7 @@
 } */
 
 
-.addSku {
-    height: 90vh;
+.skuList {
+    height: 55vh;
     overflow-y: auto;
 }

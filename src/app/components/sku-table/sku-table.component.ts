@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class SkuTableComponent {
   @Input() data!: any;
-  displayedColumns: Array<string> = ['no', 'name', 'company']
+  displayedColumns: Array<string> = ['no', 'name', 'company', 'price']
 
 }

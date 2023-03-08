@@ -12,6 +12,8 @@ export class AdminDashboardComponent implements OnInit {
   shopList!: any;
 
   locationList!: any;
+
+  adminDashboardData!: any;
   constructor(private dataFetch: DataFetchService){}
   ngOnInit(): void {
     this.fetchSkuList('')
@@ -43,5 +45,38 @@ export class AdminDashboardComponent implements OnInit {
         this.locationList = res["Locations"]
       }
     })
+  }
+
+  public filterData(event: any) {
+    console.log(event)
+    
+    this.dataFetch.fetchAdminDashboardData(event.shopIdList, event.startDate, event.endDate).subscribe((res: any) => {
+      console.log(res)
+      if (res && res["Result"]) {
+        this.adminDashboardData = res["Result"]
+        this.adminDashboardData = this.adminDashboardData.filter((element: any) => {
+          if (element.items.length) return element
+        })
+      }
+    })
+  }
+
+  public downloadSummaryPDF(event: any) {
+
+
+    this.dataFetch.fetchAdminDashboardPdfData().then(res => res.blob())
+    .then((pdfBlob: any) => {
+      var downloadLink = document.createElement('a')
+      downloadLink.target = '_blank'
+      downloadLink.download = 'summary.pdf'
+      var URL = window.URL || window.webkitURL
+      var downloadUrl = URL.createObjectURL(pdfBlob)
+      downloadLink.href = downloadUrl
+      document.body.append(downloadLink) // THIS LINE ISN'T NECESSARY
+      downloadLink.click()
+      document.body.removeChild(downloadLink);  // THIS LINE ISN'T NECESSARY
+      URL.revokeObjectURL(downloadUrl)
+    })
+
   }
 }

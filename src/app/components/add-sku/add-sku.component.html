@@ -25,7 +25,11 @@
           </mat-option>
       </mat-autocomplete>
     </mat-form-field><br>
-    <button mat-raised-button [disabled]="!companySearchFormGroup.valid" (click)="addSku(addSkuName, companySearchBoxData)">AddSku</button>
+    <mat-form-field>
+      <mat-label for="price">SKU Price:</mat-label>
+      <input formControlName="skuPriceFormControl" type="number" matInput name="price" [(ngModel)]="addSkuPrice" required>
+    </mat-form-field><br>
+    <button mat-raised-button [disabled]="!companySearchFormGroup.valid" (click)="addSku(addSkuName, companySearchBoxData, addSkuPrice)">AddSku</button>
   </form>
   
   
