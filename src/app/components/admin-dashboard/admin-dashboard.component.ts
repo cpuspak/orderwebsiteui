@@ -64,7 +64,7 @@ export class AdminDashboardComponent implements OnInit {
   public downloadSummaryPDF(event: any) {
 
 
-    this.dataFetch.fetchAdminDashboardPdfData().then(res => res.blob())
+    this.dataFetch.fetchAdminDashboardPdfData(event.shopIdList, event.startDate, event.endDate).then(res => res.blob())
     .then((pdfBlob: any) => {
       var downloadLink = document.createElement('a')
       downloadLink.target = '_blank'

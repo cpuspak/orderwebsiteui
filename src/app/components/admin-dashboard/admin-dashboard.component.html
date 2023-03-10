@@ -1,7 +1,7 @@
 
 <div class="main">
     <div class="left">
-        <div class="filter" *ngIf="locationList"><!-- *ngIf="shopList && locationList">-->
+        <div class="filter" *ngIf="locationList && shopList">
             <app-admin-dashboard-filters [shopListTotal] = 'shopList'
             [locationList] = 'locationList' 
             (filterDataEvent)="filterData($event)"

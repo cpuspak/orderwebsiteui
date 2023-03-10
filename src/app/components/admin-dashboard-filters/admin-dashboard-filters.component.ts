@@ -15,22 +15,25 @@ export class AdminDashboardFiltersComponent implements OnInit {
 
   shopFormControl = new FormControl('')
 
-  endDate!: Date
-  startDate!: Date
+  endDate!: any
+  startDate!: any
 
-  location!: string
+  location!: any
   shops!: any
 
   shopIdList!: any
 
   shopList!: any
+  
+  selectedShops!: any
+  selectedLocation!: any
 
 
 
   ngOnInit(): void {
     console.log(this.shopList, this.locationList)
     this.shopList = this.shopListTotal
-    console.log(this.shopList)
+    console.log(this.shopList, this.shopListTotal)
   }
 
   setLocation(location: any) {
@@ -67,7 +70,13 @@ export class AdminDashboardFiltersComponent implements OnInit {
   }
 
   filterData() {
-    this.endDate.setHours(23,59,59)
+    if (this.endDate) this.endDate.setHours(23,59,59)
+    if (!this.endDate) this.endDate = null
+    if (!this.startDate) this.startDate = null
+    if (!this.location) this.location = null
+    if (!this.shopIdList) this.shopIdList = null
+
+
     this.filterDataEvent.emit({
       "startDate": this.startDate,
       "endDate": this.endDate,
@@ -77,6 +86,25 @@ export class AdminDashboardFiltersComponent implements OnInit {
   }
 
   downloadSummaryPDF() {
-    this.downloadSummaryPDFEvent.emit('')
+    if (this.endDate) this.endDate.setHours(23,59,59)
+    if (!this.endDate) this.endDate = null
+    if (!this.startDate) this.startDate = null
+    if (!this.location) this.location = null
+    if (!this.shopIdList) this.shopIdList = null
+    this.downloadSummaryPDFEvent.emit({
+      "startDate": this.startDate,
+      "endDate": this.endDate,
+      "location": this.location,
+      "shopIdList": this.shopIdList
+    })
+  }
+
+  clearFilter() {
+    this.endDate = undefined;
+    this.startDate = undefined;
+    this.selectedLocation = undefined;
+    this.selectedShops = undefined;
+    this.shopIdList = undefined;
+    this.location = undefined
   }
 }

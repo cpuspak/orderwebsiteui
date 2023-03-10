@@ -57,8 +57,15 @@ export class DataFetchService {
     })
   }
 
-  public fetchAdminDashboardPdfData() {
-    return fetch(backendUrl+"/pdf")
+  public fetchAdminDashboardPdfData(shopIdList: any, startDate: Date, endDate: Date) {
+    return fetch(backendUrl+"/pdf",{
+      method: 'GET',
+      body: JSON.stringify({
+        "shops": shopIdList,
+        "start": startDate,
+        "end": endDate
+      })
+    })
     
   }
 

@@ -18,14 +18,14 @@
         
         <mat-form-field class="locationList">
             <mat-label>Choose Location</mat-label>
-            <mat-select name="locationList">
+            <mat-select name="locationList" [(ngModel)]="selectedLocation">
                 <mat-option *ngFor="let location of locationList"  [value]="location.LocationName" (click)="setLocation(location)">{{location.LocationName}}</mat-option>
             </mat-select>
         </mat-form-field>
         
         <mat-form-field class="shopList">
             <mat-label>Choose Shops</mat-label>
-            <mat-select multiple [formControl]="shopFormControl" name="shopList">
+            <mat-select multiple [formControl]="shopFormControl" name="shopList" [(ngModel)]="selectedShops">
                 <mat-option *ngFor="let shop of shopList"  [value]="shop.ShopName" (click)="setShop(shop)">{{shop.ShopName}}</mat-option>
                
             </mat-select>
@@ -34,4 +34,5 @@
     </div>
     <button mat-raised-button class="right" (click)="downloadSummaryPDF()">Download Summary PDF</button>
     <button mat-raised-button class="right" (click)="filterData()">Filter</button>
+    <button mat-raised-button class="right" (click)="clearFilter()">Clear Filters</button>
 </div>
