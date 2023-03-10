@@ -1,0 +1,32 @@
+<div class="tableInfo">
+    <span>Order Date - {{tableHeaders.OrderDate}}</span>
+    <span>Order Number - {{tableHeaders.OrderNumber}}</span>
+    <span>Shop Location - {{tableHeaders.ShopLocation}}</span>
+    <span>Shop Name - {{tableHeaders.ShopName}}</span>
+</div>
+<table mat-table [dataSource]="items" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="ItemID">
+      <th mat-header-cell *matHeaderCellDef> ItemID. </th>
+      <td mat-cell *matCellDef="let element"> {{element.ItemID}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="MRP">
+      <th mat-header-cell *matHeaderCellDef> MRP </th>
+      <td mat-cell *matCellDef="let element"> {{element.MRP}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="ProductName">
+      <th mat-header-cell *matHeaderCellDef> ProductName </th>
+      <td mat-cell *matCellDef="let element"> {{element.ProductName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.Quantity}} </td>
+      </ng-container>
+    
+  
+    <tr mat-header-row *matHeaderRowDef="columnHeader"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnHeader;"></tr>
+  </table>

@@ -1,0 +1,10 @@
+.filter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.right {
+    float: right;
+    margin: 5px;
+}

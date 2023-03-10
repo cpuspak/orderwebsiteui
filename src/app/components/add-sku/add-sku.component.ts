@@ -12,15 +12,17 @@ import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.
 })
 export class AddSkuComponent implements OnInit {
   skuList!: any
-  displayedColumns: Array<string> = ['no', 'name', 'company']
+  
   addSkuName: string = ""
   addCompanyName: string = ""
+  addSkuPrice: number = 0
   companySearchBoxData: string = ""
   filteredCompanies: Array<any> = []
   // companySearchFormGroup!: FormGroup
   companySearchFormGroup = new FormGroup({
     companyNameFormControl: new FormControl(''),
-    skuNameFormControl: new FormControl('')
+    skuNameFormControl: new FormControl(''),
+    skuPriceFormControl: new FormControl('')
   });
 
   constructor(private dataFetch: DataFetchService,
@@ -40,8 +42,8 @@ export class AddSkuComponent implements OnInit {
     })
   }
 
-  addSku(skuName: string, companyName: string) {
-    this.dataAdd.addSku(skuName, companyName).subscribe((res: any) => {
+  addSku(skuName: string, companyName: string, price: number) {
+    this.dataAdd.addSku(skuName, companyName, price).subscribe((res: any) => {
       this.fetchSkuList('')
     })
   }
@@ -49,7 +51,8 @@ export class AddSkuComponent implements OnInit {
   initForm() {
     this.companySearchFormGroup = this.formBuilder.group({
       'companyNameFormControl': [''],
-      'skuNameFormControl': ['']
+      'skuNameFormControl': [''],
+      'skuPriceFormControl': ['']
     })
     this.companySearchFormGroup.get('companyNameFormControl')!.valueChanges
     .pipe(tap(res => {

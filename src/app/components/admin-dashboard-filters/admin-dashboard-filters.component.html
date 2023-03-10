@@ -1,0 +1,38 @@
+<div class="parentFilter">
+    <div class="filter">
+        <mat-form-field appearance="fill">
+            <mat-label>Choose start date</mat-label>
+            <input matInput [matDatepicker]="start" [(ngModel)]="startDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="start"></mat-datepicker-toggle>
+            <mat-datepicker #start></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Choose end date</mat-label>
+            <input matInput [matDatepicker]="end" [(ngModel)]="endDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="end"></mat-datepicker-toggle>
+            <mat-datepicker #end></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field class="locationList">
+            <mat-label>Choose Location</mat-label>
+            <mat-select name="locationList" [(ngModel)]="selectedLocation">
+                <mat-option *ngFor="let location of locationList"  [value]="location.LocationName" (click)="setLocation(location)">{{location.LocationName}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class="shopList">
+            <mat-label>Choose Shops</mat-label>
+            <mat-select multiple [formControl]="shopFormControl" name="shopList" [(ngModel)]="selectedShops">
+                <mat-option *ngFor="let shop of shopList"  [value]="shop.ShopName" (click)="setShop(shop)">{{shop.ShopName}}</mat-option>
+               
+            </mat-select>
+        </mat-form-field>
+        
+    </div>
+    <button mat-raised-button class="right" (click)="downloadSummaryPDF()">Download Summary PDF</button>
+    <button mat-raised-button class="right" (click)="filterData()">Filter</button>
+    <button mat-raised-button class="right" (click)="clearFilter()">Clear Filters</button>
+</div>

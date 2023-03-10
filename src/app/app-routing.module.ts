@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminComponent } from './components/admin/admin.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { LoginAndRegisterComponent } from './components/login-and-register/login-and-register.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
@@ -13,14 +13,6 @@ const routes: Routes = [
     path: 'auth',
     component: LoginComponent,
     canActivate: [LoginAuthService]
-  },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    canActivate: [AuthGuardService, RoleGuardGuard],
-    data : {
-      expectedRoles : ['admin']
-    }
   },
   {
     path: '',

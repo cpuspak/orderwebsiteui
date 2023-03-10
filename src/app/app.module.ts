@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginAndRegisterComponent } from './components/login-and-register/login-and-register.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { AdminComponent } from './components/admin/admin.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,7 +33,15 @@ import { ItemComponent } from './components/item/item.component';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog'
-import { MatSelectModule } from '@angular/material/select'
+import { MatSelectModule } from '@angular/material/select';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { ShopTableComponent } from './components/shop-table/shop-table.component';
+import { SkuTableComponent } from './components/sku-table/sku-table.component';
+import { AdminDashboardFiltersComponent } from './components/admin-dashboard-filters/admin-dashboard-filters.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { AdminDashboardTablesComponent } from './components/admin-dashboard-tables/admin-dashboard-tables.component';
+
 
 
 
@@ -45,14 +52,18 @@ import { MatSelectModule } from '@angular/material/select'
     MainComponent,
     RegisterComponent,
     LoginAndRegisterComponent,
-    AdminComponent,
     NavbarComponent,
     AddSkuComponent,
     AddShopComponent,
     AddOrderComponent,
     OrderComponent,
     ItemComponent,
-    AddItemComponent
+    AddItemComponent,
+    AdminDashboardComponent,
+    ShopTableComponent,
+    SkuTableComponent,
+    AdminDashboardFiltersComponent,
+    AdminDashboardTablesComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +85,9 @@ import { MatSelectModule } from '@angular/material/select'
     MatExpansionModule,
     MatAutocompleteModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]

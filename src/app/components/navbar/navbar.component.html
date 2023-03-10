@@ -1,5 +1,6 @@
 <mat-toolbar color="primary">
     <button mat-icon-button (click)="toggleSideNav()"><mat-icon>menu</mat-icon></button>
     <span class="spacer"></span>
+    <button mat-button (click)="triggerAdminDashboardView()" *ngIf="isAdmin()">Admin Dashboard</button>
     <button mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
