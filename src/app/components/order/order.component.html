@@ -19,8 +19,7 @@
     <mat-panel-description>
         <div *ngIf="!panelOpenState">
             <span *ngIf="items">{{items.length}} items</span>&nbsp;
-            <span>CreatedTime - {{createTime}}</span>&nbsp;
-            <!-- <br> <span style="font-size: small; color: rgb(245, 160, 100)"> 14:43:30  - 11 March</span> -->
+            <br> <span style="font-size: small; color: rgb(245, 160, 100)">{{createTime | date:'HH:mm:ss dd-MMM-yyyy'}}</span>
         </div>
     </mat-panel-description>
     </mat-expansion-panel-header>
@@ -29,7 +28,7 @@
     <div *ngIf="loading || !items">
         <app-loading></app-loading>
     </div>
-    <div *ngFor="let element of items">
+    <!-- <div *ngFor="let element of items">
         <app-item 
             [itemId]="element.ItemID" 
             [productName]="element.ProductName" 
@@ -37,6 +36,9 @@
             [createdTime]="element.CreatedTime"
             >
         </app-item><br>
+    </div> -->
+    <div class="itemsTable">
+        <app-item-table [items]="items"></app-item-table>
     </div>
 
     <!-- <button mat-mini-fab style="margin-top: 5px;" ()>+</button> -->
