@@ -66,4 +66,8 @@ export class OrderComponent implements OnInit {
     this.fetchItemFromOrderId()
   }
 
+  getFormattedTime() {
+    
+    return new Date(this.createTime).toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
+  }
 }

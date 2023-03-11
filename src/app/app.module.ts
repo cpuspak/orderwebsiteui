@@ -42,6 +42,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AdminDashboardTablesComponent } from './components/admin-dashboard-tables/admin-dashboard-tables.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ItemTableComponent } from './components/item-table/item-table.component';
 
 
 
@@ -65,7 +66,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     SkuTableComponent,
     AdminDashboardFiltersComponent,
     AdminDashboardTablesComponent,
-    LoadingComponent
+    LoadingComponent,
+    ItemTableComponent
   ],
   imports: [
     BrowserModule,
