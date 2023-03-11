@@ -4,4 +4,9 @@
     <button class="navButton" mat-button (click)="triggerRegisterUserView()" *ngIf="isAdmin()">Register New User</button>
     <button class="navButton" mat-button (click)="triggerAdminDashboardView()" *ngIf="isAdmin()">Admin Dashboard</button>
     <button class="navButton" mat-button (click)="logout()">Logout</button>
+
+    
+    <button class="navButtonSmall" mat-button (click)="triggerRegisterUserView()" *ngIf="isAdmin()"></button>
+    <button class="navButtonSmall" mat-button (click)="triggerAdminDashboardView()" *ngIf="isAdmin()"></button>
+    <button class="navButtonSmall" mat-button (click)="logout()"><mat-icon>logout</mat-icon></button>
 </mat-toolbar>
