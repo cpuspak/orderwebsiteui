@@ -41,6 +41,7 @@ import { AdminDashboardFiltersComponent } from './components/admin-dashboard-fil
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AdminDashboardTablesComponent } from './components/admin-dashboard-tables/admin-dashboard-tables.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
@@ -63,7 +64,8 @@ import { AdminDashboardTablesComponent } from './components/admin-dashboard-tabl
     ShopTableComponent,
     SkuTableComponent,
     AdminDashboardFiltersComponent,
-    AdminDashboardTablesComponent
+    AdminDashboardTablesComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

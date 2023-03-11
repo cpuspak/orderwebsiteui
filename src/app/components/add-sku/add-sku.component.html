@@ -35,7 +35,11 @@
   
   
   <div class="skuList">
-    <app-sku-table [data]="skuList"></app-sku-table>
+    <div *ngIf="!skuList || loading" style="margin-top: 5vh;">
+      <app-loading></app-loading>
+    </div>
+    <app-sku-table *ngIf="skuList" [data]="skuList"></app-sku-table>
+    
   </div>
     
   

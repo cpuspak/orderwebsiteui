@@ -15,6 +15,7 @@ export class OrderComponent implements OnInit {
 
   shopName!: string
   items!: any
+  loading: boolean = false
 
   panelOpenState: boolean = false
 
@@ -55,11 +56,13 @@ export class OrderComponent implements OnInit {
       console.log("fetchshopname from orderid", res)
       if (res && res["Items"]){
         this.items = res["Items"]
+        this.loading = false
       }
     })
   }
 
   refreshItemsList(orderId: number) {
+    this.loading = true
     this.fetchItemFromOrderId()
   }
 

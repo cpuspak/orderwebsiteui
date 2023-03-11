@@ -12,6 +12,7 @@ import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.
 })
 export class AddSkuComponent implements OnInit {
   skuList!: any
+  loading: boolean = false
   
   addSkuName: string = ""
   addCompanyName: string = ""
@@ -37,12 +38,15 @@ export class AddSkuComponent implements OnInit {
     this.dataFetch.fetchSkus(skuName).subscribe((res: any) => {
       if (res && res['Skus']) {
         this.skuList = res['Skus'];
+        this.loading = false
+        this.clearFormFields()
         console.log(res)
       }
     })
   }
 
   addSku(skuName: string, companyName: string, price: number) {
+    this.loading = true
     this.dataAdd.addSku(skuName, companyName, price).subscribe((res: any) => {
       this.fetchSkuList('')
     })
@@ -78,6 +82,12 @@ export class AddSkuComponent implements OnInit {
         this.filteredCompanies = res["Companies"]
     })
 
+  }
+
+  clearFormFields() {
+    this.addSkuName = ""
+    this.addSkuPrice = 0
+    this.addCompanyName = ""
   }
 
 

@@ -14,6 +14,7 @@ export class AdminDashboardComponent implements OnInit {
   locationList!: any;
 
   adminDashboardData!: any;
+  loadingAdminDashboardData: boolean = false
   constructor(private dataFetch: DataFetchService){}
   ngOnInit(): void {
     this.fetchSkuList('')
@@ -49,7 +50,7 @@ export class AdminDashboardComponent implements OnInit {
 
   public filterData(event: any) {
     console.log(event)
-    
+    this.loadingAdminDashboardData = true
     this.dataFetch.fetchAdminDashboardData(event.shopIdList, event.startDate, event.endDate).subscribe((res: any) => {
       console.log(res)
       if (res && res["Result"]) {
@@ -57,6 +58,7 @@ export class AdminDashboardComponent implements OnInit {
         this.adminDashboardData = this.adminDashboardData.filter((element: any) => {
           if (element.items.length) return element
         })
+        this.loadingAdminDashboardData = false
       }
     })
   }
