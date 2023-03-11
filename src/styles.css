@@ -21,3 +21,46 @@ body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     background: gray;
     border-radius: 10px;
 }
+
+
+
+.sameRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2vw;
+}
+
+.mat-mdc-form-field {
+    max-width: 40vw !important;
+    font-size: small;
+}
+
+
+
+.mat-mdc-table {
+    background: rgb(230, 230, 230);
+}
+.mdc-data-table__header-cell {
+    color: rgb(250, 130, 45);
+    font-weight: 1000;
+}
+
+.mdc-data-table__cell {
+    font-weight: 200;
+}
+
+.inputButton {
+    margin-top: 1vw;
+    color: white !important;
+    background: rgb(250, 130, 45) !important;
+    max-width: 40vw;
+    justify-content: center;
+}
+.inputButton:disabled {
+    margin-top: 1vw;
+    color: white !important;
+    background: rgb(245, 160, 100) !important;
+    max-width: 40vw;
+    justify-content: center;
+}

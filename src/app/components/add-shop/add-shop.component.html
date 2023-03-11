@@ -1,42 +1,48 @@
 
 
 <div class="addShop">
-  <form [formGroup]="locationSearchFormGroup">
-    <mat-form-field>
-      <mat-label for="name">Shop Name:</mat-label>
-      <input type="text" matInput formControlName="shopNameFormControl" name="Name" type="text" [(ngModel)]="addShopName" required>
-    </mat-form-field><br>
-    <mat-form-field>
-      <mat-label for="phone">Phone:</mat-label>
-      <input type="text" formControlName="phoneFormControl" matInput name="phone" type="text" [(ngModel)]="addPhone" required>
-    </mat-form-field><br>
-    <mat-form-field>
-      <mat-label for="address">Address :</mat-label>
-      <input type="text" formControlName="addressFormControl" matInput name="address" type="text" [(ngModel)]="addAddress" required>
-    </mat-form-field><br>
-    <mat-form-field>
-      <mat-label for="location">Location :</mat-label>
-      <input formControlName="locationFormControl" matInput name="location" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="locationSearchBoxData" required>
-            
-            <mat-autocomplete #autocompleteLink="matAutocomplete">
-                <mat-option *ngFor="let filteredLocation of filteredLocations" 
-                [value]="filteredLocation.LocationName" 
-                [id]="filteredLocation.LocationName" 
-                >
-                    <!-- <app-participant-search-tab 
-                        class="parentClass"
-                        [participantName]="filteredParticipant.username"
+  <div>
+    <form [formGroup]="locationSearchFormGroup">
+      <div class="sameRow">
+        <mat-form-field>
+          <mat-label for="location">Beat :</mat-label>
+          <input formControlName="locationFormControl" matInput name="location" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="locationSearchBoxData" required>
+                
+                <mat-autocomplete #autocompleteLink="matAutocomplete">
+                    <mat-option *ngFor="let filteredLocation of filteredLocations" 
+                    [value]="filteredLocation.LocationName" 
+                    [id]="filteredLocation.LocationName" 
                     >
-                    </app-participant-search-tab> -->
-                    {{filteredLocation.LocationName}}
-                </mat-option>
-            </mat-autocomplete>
-    </mat-form-field><br>
-    <button mat-raised-button (click)="addShop(addShopName, addPhone, addAddress, locationSearchBoxData)" [disabled]="!locationSearchFormGroup.valid">AddShop</button>
-  </form>
-  
-  
-  
+                        <!-- <app-participant-search-tab 
+                            class="parentClass"
+                            [participantName]="filteredParticipant.username"
+                        >
+                        </app-participant-search-tab> -->
+                        {{filteredLocation.LocationName}}
+                    </mat-option>
+                </mat-autocomplete>
+        </mat-form-field>
+
+      <mat-form-field>
+        <mat-label for="name">Shop Name:</mat-label>
+        <input type="text" matInput formControlName="shopNameFormControl" name="Name" type="text" [(ngModel)]="addShopName" required>
+      </mat-form-field>
+      </div>
+      <div class="sameRow">
+        <mat-form-field>
+          <mat-label for="phone">Phone:</mat-label>
+          <input type="text" formControlName="phoneFormControl" matInput name="phone" type="text" [(ngModel)]="addPhone" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="address">Address :</mat-label>
+          <input type="text" formControlName="addressFormControl" matInput name="address" type="text" [(ngModel)]="addAddress" required>
+        </mat-form-field>
+      </div>
+      <button class="inputButton sameRow" mat-raised-button (click)="addShop(addShopName, addPhone, addAddress, locationSearchBoxData)" [disabled]="!locationSearchFormGroup.valid">Add Shop</button>
+    </form>
+    
+  </div>
+   
   
   
   <div class="shopList">
