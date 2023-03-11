@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { LoginService } from 'src/app/services/login.service/login.service';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,6 +11,7 @@ import { LoginService } from 'src/app/services/login.service/login.service';
 export class NavbarComponent {
   @Input() sideNav!: MatSidenav; 
   @Output() switchToAdminDashboardEvent = new EventEmitter()
+  @Output() switchToRegisterUserViewEvent = new EventEmitter()
   constructor(private loginService: LoginService){}
 
   logout() {
@@ -24,6 +26,10 @@ export class NavbarComponent {
   triggerAdminDashboardView() {
     this.switchToAdminDashboardEvent.emit('')
 
+  }
+
+  triggerRegisterUserView() {
+    this.switchToRegisterUserViewEvent.emit('')
   }
   isAdmin() {
     return this.loginService.isAdmin()

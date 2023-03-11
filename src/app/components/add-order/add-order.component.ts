@@ -46,6 +46,7 @@ export class AddOrderComponent implements OnInit {
           return element2['OrderID'] - element1['OrderID']
         })
         this.loading = false
+        this.clearFormFields()
       }
     })
   }
@@ -55,6 +56,7 @@ export class AddOrderComponent implements OnInit {
     this.dataAdd.createOrder(shopId).subscribe((res: any) => {
       console.log("order created", res)
       this.fetchList()
+      
     })
   }
 
@@ -118,6 +120,11 @@ export class AddOrderComponent implements OnInit {
     if (ShopID) {
       this.shopId = ShopID
     }
+  }
+
+  public clearFormFields() {
+    this.shopNameSearchBoxData = ""
+    this.selectedLocation = ""
   }
   
 

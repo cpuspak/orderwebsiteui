@@ -88,6 +88,7 @@ export class AddSkuComponent implements OnInit {
     this.addSkuName = ""
     this.addSkuPrice = 0
     this.addCompanyName = ""
+    this.companySearchBoxData = ""
   }
 
 

@@ -1,17 +1,22 @@
-
-    <input matInput placeholder="User Name" type="text" name="userName" id="userName" value="userName" [(ngModel)]="userName">
-
-<br>
-
-    <input matInput placeholder="Password" type="password" name="password" id="password" value="password" [(ngModel)]="password">
-    <br>
-
-<br>
-
-    <input matInput placeholder="Name" type="text" name="name" id="name" value="name" [(ngModel)]="name">
-
-
-<br><br>
-<button mat-raised-button (click)="registerUser()">Register</button>
-<br>
-{{message}}
+<div class="registerCardContainer">
+    <form #registerForm="ngForm">
+        <mat-card class="registerCard">
+            <mat-form-field class="textFormField">
+                <mat-label for="userName">UserName:</mat-label>
+                <input matInput placeholder="User Name" type="text" name="userName" id="userName" value="userName" [(ngModel)]="userName" required>
+            </mat-form-field><br>
+            <mat-form-field class="textFormField">
+                <mat-label for="name">Name:</mat-label>
+                <input matInput placeholder="Name" type="text" name="name" id="name" value="name" [(ngModel)]="name" required>
+            </mat-form-field><br>
+            <mat-form-field class="textFormField">
+                <mat-label for="password">Password:</mat-label>
+                <input matInput placeholder="Password" type="password" name="password" id="password" value="password" [(ngModel)]="password" required>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button class="registerUser" (click)="registerUser()" [disabled]="!registerForm.form.valid">Register</button><br>
+            {{message}}
+        </mat-card>
+    </form>
+    
+</div>
