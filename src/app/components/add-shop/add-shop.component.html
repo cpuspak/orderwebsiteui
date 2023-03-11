@@ -40,7 +40,10 @@
   
   
   <div class="shopList">
-    <app-shop-table [data]="shopList"></app-shop-table>
+    <div *ngIf="!shopList || loading" style="margin-top: 5vh;">
+      <app-loading></app-loading>
+    </div>
+    <app-shop-table *ngIf="shopList" [data]="shopList"></app-shop-table>
     
   </div>
   

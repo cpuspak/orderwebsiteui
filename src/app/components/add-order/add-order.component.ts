@@ -17,6 +17,8 @@ export class AddOrderComponent implements OnInit {
   selectedLocation: string = ""
   shopNames: Array<any> = []
 
+  loading: boolean = false
+
   shopNameSearchBoxData: string = ""
   shopNameSearchFormGroup = new FormGroup({
     shopNameFormControl: new FormControl()
@@ -43,11 +45,13 @@ export class AddOrderComponent implements OnInit {
         this.orderList.sort((element1: any, element2: any) => {
           return element2['OrderID'] - element1['OrderID']
         })
+        this.loading = false
       }
     })
   }
 
   addOrder(shopId: number) {
+    this.loading = true
     this.dataAdd.createOrder(shopId).subscribe((res: any) => {
       console.log("order created", res)
       this.fetchList()

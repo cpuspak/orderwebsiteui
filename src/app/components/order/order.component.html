@@ -24,6 +24,9 @@
     </mat-expansion-panel-header>
     <!-- <app-add-item [orderId]="orderId" (newItemAddedEvent)="refreshItemsList(orderId)"></app-add-item> -->
     <button (click)="openAddItemDialog()" mat-button style="background-color: blue; color: white;">Add Item</button>
+    <div *ngIf="loading || !items">
+        <app-loading></app-loading>
+    </div>
     <div *ngFor="let element of items">
         <app-item 
             [itemId]="element.ItemID" 

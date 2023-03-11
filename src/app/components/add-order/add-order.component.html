@@ -32,13 +32,16 @@
         </mat-form-field><br>
     
         
-        <button mat-raised-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid">CreateOrder</button>
+        <button mat-raised-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid || !shopId">CreateOrder</button>
     
     </form>
     
     
     
     <div class="orderList">
+        <div *ngIf="!orderList || loading" style="margin-top: 5vh;">
+            <app-loading></app-loading>
+        </div>
         <div *ngFor="let element of orderList">
             <app-order [orderId]="element.OrderID" [createTime]="element.CreatedTime" [shopId]="element.ShopID"></app-order><br><br>
         </div>

@@ -12,7 +12,7 @@ import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.
 export class AddShopComponent {
   shopList!: any
   // displayedColumns: Array<string> = ['no', 'name', 'address', 'location','phone']
-  
+  loading: boolean = false
   addShopName: string = ""
   addPhone: string = ""
   addAddress: string = ""
@@ -39,11 +39,14 @@ export class AddShopComponent {
       if (res && res['Shops']) {
         this.shopList = res['Shops'];
         console.log(res)
+        this.loading = false
+        this.clearFormFields()
       }
     })
   }
 
   addShop(shopName: string, phone: string, address: string, location: string) {
+    this.loading = true
     this.dataAdd.addShop(shopName, phone, address, location).subscribe((res: any) => {
       this.fetchShopList('')
     })
@@ -80,5 +83,12 @@ export class AddShopComponent {
         this.filteredLocations = res["Locations"]
     })
 
+  }
+
+  clearFormFields() {
+    this.addAddress = ""
+    this.addShopName = ""
+    this.locationSearchBoxData = ""
+    this.addPhone = ""
   }
 }

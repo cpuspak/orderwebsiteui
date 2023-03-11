@@ -11,6 +11,6 @@ export class AdminDashboardTablesComponent implements OnInit {
   @Input() tableHeaders!: any
 
   ngOnInit(): void {
-    console.log("asf")
+    
   }
 }

@@ -9,18 +9,27 @@
             ></app-admin-dashboard-filters>
         </div>
         <div class="tables">
-            <div class="table mat-elevation-z2" *ngFor="let element of adminDashboardData">
-                <app-admin-dashboard-tables [tableHeaders]="element.header" [items]="element.items"></app-admin-dashboard-tables>
+            <div *ngIf="loadingAdminDashboardData">
+                <app-loading></app-loading>
             </div>
+            <div *ngIf="!loadingAdminDashboardData">
+                <div class="table mat-elevation-z2" *ngFor="let element of adminDashboardData">
+                    <app-admin-dashboard-tables [tableHeaders]="element.header" [items]="element.items"></app-admin-dashboard-tables>
+                </div>
+            </div>
+            
             
         </div>
     </div>
     <div class="right">
-        <div class="skuList mat-elevation-z2">
-            <app-sku-table [data]="skuList"></app-sku-table>
+        <div *ngIf="!shopList">
+            <app-loading></app-loading>
         </div>
-        <div class="shopList mat-elevation-z2">
-            <app-shop-table [data]="shopList"></app-shop-table>
+        <div class="skuList mat-elevation-z2" *ngIf="skuList">
+            <app-sku-table *ngIf="skuList" [data]="skuList"></app-sku-table>
+        </div>
+        <div class="shopList mat-elevation-z2" *ngIf="shopList">
+            <app-shop-table *ngIf="shopList" [data]="shopList"></app-shop-table>
         </div>
     </div>
 </div>
