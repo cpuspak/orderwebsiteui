@@ -5,25 +5,27 @@
     CreateTime - {{createTime}}
 </mat-card> -->
 
-<mat-expansion-panel (opened)="panelOpenState = true"
+<div style="margin: 1vw;;">
+    <mat-expansion-panel (opened)="panelOpenState = true"
                         (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
     <mat-panel-title>
         <div class="titleRow">
-            <span>Order#{{orderId}}</span>
+            <span style="font-weight: bold;">#{{orderId}}</span> <br>
+            <span style="font-family: Arial, Helvetica, sans-serif; font-size: larger; color: rgb(250, 130, 45); font-weight: bold;">{{shopName}}</span>&nbsp;
             
         </div>
     </mat-panel-title>
     <mat-panel-description>
         <div *ngIf="!panelOpenState">
-            <span *ngIf="items">Total items - {{items.length}},</span>&nbsp;
-            <span>ShopName - {{shopName}},</span>&nbsp;
+            <span *ngIf="items">{{items.length}} items</span>&nbsp;
             <span>CreatedTime - {{createTime}}</span>&nbsp;
+            <!-- <br> <span style="font-size: small; color: rgb(245, 160, 100)"> 14:43:30  - 11 March</span> -->
         </div>
     </mat-panel-description>
     </mat-expansion-panel-header>
     <!-- <app-add-item [orderId]="orderId" (newItemAddedEvent)="refreshItemsList(orderId)"></app-add-item> -->
-    <button (click)="openAddItemDialog()" mat-button style="background-color: blue; color: white;">Add Item</button>
+    <button (click)="openAddItemDialog()" mat-button style="background-color: rgb(250, 130, 45); color: white;">Add Item</button>
     <div *ngIf="loading || !items">
         <app-loading></app-loading>
     </div>
@@ -40,3 +42,4 @@
     <!-- <button mat-mini-fab style="margin-top: 5px;" ()>+</button> -->
     <!-- <button mat-button style="background-color: blue; color: white;" (click)="editPopup($event)">Edit</button> -->
 </mat-expansion-panel>
+</div>

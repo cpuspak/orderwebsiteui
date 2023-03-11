@@ -1,38 +1,38 @@
 <div class="addOrder">
     <form [formGroup]="shopNameSearchFormGroup">
-        <mat-form-field>
-            <mat-label>Location</mat-label>
-            <mat-select matNativeControl required [(value)]="selectedLocation" (valueChange)="resetShopName()" required>
-                <mat-option value="">None</mat-option>
-                <mat-option *ngFor="let location of locations" value={{location.LocationName}}>{{location.LocationName}}</mat-option>
-                
-            </mat-select>
-        </mat-form-field><br>
-        <mat-form-field>
-            <mat-label for="shopName">shop name:</mat-label>
-        
-            <input formControlName="shopNameFormControl" matInput name="shopName" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="shopNameSearchBoxData" required/>
-                  
-            <mat-autocomplete #autocompleteLink="matAutocomplete">
-                <mat-option *ngFor="let filteredShopName of filteredShopNames" 
-                [value]="filteredShopName.ShopName" 
-                [id]="filteredShopName.ShopID" 
-                (click)="getShopId($event, filteredShopName.ShopID)"
-                >
-                    <!-- <app-participant-search-tab 
-                        class="parentClass"
-                        [participantName]="filteredParticipant.username"
-                    >
-                    </app-participant-search-tab> -->
-                    {{filteredShopName.ShopName}}
-                </mat-option>
-            </mat-autocomplete>
-        
+        <div class="sameRow">
+            <mat-form-field>
+                <mat-label>Location</mat-label>
+                <mat-select matNativeControl required [(value)]="selectedLocation" (valueChange)="resetShopName()" required>
+                    <mat-option value="">None</mat-option>
+                    <mat-option *ngFor="let location of locations" value={{location.LocationName}}>{{location.LocationName}}</mat-option>
+                    
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label for="shopName">shop name:</mat-label>
             
-        </mat-form-field><br>
-    
-        
-        <button mat-raised-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid || !shopId">CreateOrder</button>
+                <input formControlName="shopNameFormControl" matInput name="shopName" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="shopNameSearchBoxData" required/>
+                      
+                <mat-autocomplete #autocompleteLink="matAutocomplete">
+                    <mat-option *ngFor="let filteredShopName of filteredShopNames" 
+                    [value]="filteredShopName.ShopName" 
+                    [id]="filteredShopName.ShopID" 
+                    (click)="getShopId($event, filteredShopName.ShopID)"
+                    >
+                        <!-- <app-participant-search-tab 
+                            class="parentClass"
+                            [participantName]="filteredParticipant.username"
+                        >
+                        </app-participant-search-tab> -->
+                        {{filteredShopName.ShopName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <button class="sameRow inputButton" mat-raised-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid || !shopId">Create Order</button>
     
     </form>
     
@@ -43,7 +43,7 @@
             <app-loading></app-loading>
         </div>
         <div *ngFor="let element of orderList">
-            <app-order [orderId]="element.OrderID" [createTime]="element.CreatedTime" [shopId]="element.ShopID"></app-order><br><br>
+            <app-order [orderId]="element.OrderID" [createTime]="element.CreatedTime" [shopId]="element.ShopID"></app-order>
         </div>
     </div>
     

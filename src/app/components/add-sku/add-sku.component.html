@@ -1,36 +1,46 @@
 
 
 <div class="addSku">
-  <form [formGroup]="companySearchFormGroup">
-    <mat-form-field>
-      <mat-label for="name">SKU Name:</mat-label>
-      <input formControlName="skuNameFormControl" type="text" matInput name="name" [(ngModel)]="addSkuName" required>
-    </mat-form-field><br>
-    <mat-form-field>
-      <mat-label for="name">Company Name:</mat-label>
-      <!-- <input type="text" matInput name="name" [(ngModel)]="addCompanyName"> -->
-      <input formControlName="companyNameFormControl" matInput name="name" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="companySearchBoxData" required>
-            
-      <mat-autocomplete #autocompleteLink="matAutocomplete">
-          <mat-option *ngFor="let filteredCompany of filteredCompanies" 
-          [value]="filteredCompany.CompanyName" 
-          [id]="filteredCompany.CompanyName" 
-          >
-              <!-- <app-participant-search-tab 
-                  class="parentClass"
-                  [participantName]="filteredParticipant.username"
+  <div>
+    <form [formGroup]="companySearchFormGroup">
+      <div class="sameRow">
+        <mat-form-field>
+          <mat-label for="name">Company Name:</mat-label>
+          <!-- <input type="text" matInput name="name" [(ngModel)]="addCompanyName"> -->
+          <input formControlName="companyNameFormControl" matInput name="name" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="companySearchBoxData" required>
+                
+          <mat-autocomplete #autocompleteLink="matAutocomplete">
+              <mat-option *ngFor="let filteredCompany of filteredCompanies" 
+              [value]="filteredCompany.CompanyName" 
+              [id]="filteredCompany.CompanyName" 
               >
-              </app-participant-search-tab> -->
-              {{filteredCompany.CompanyName}}
-          </mat-option>
-      </mat-autocomplete>
-    </mat-form-field><br>
-    <mat-form-field>
-      <mat-label for="price">SKU Price:</mat-label>
-      <input formControlName="skuPriceFormControl" type="number" matInput name="price" [(ngModel)]="addSkuPrice" required>
-    </mat-form-field><br>
-    <button mat-raised-button [disabled]="!companySearchFormGroup.valid" (click)="addSku(addSkuName, companySearchBoxData, addSkuPrice)">AddSku</button>
-  </form>
+                  <!-- <app-participant-search-tab 
+                      class="parentClass"
+                      [participantName]="filteredParticipant.username"
+                  >
+                  </app-participant-search-tab> -->
+                  {{filteredCompany.CompanyName}}
+              </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label for="name">SKU Name:</mat-label>
+          <input formControlName="skuNameFormControl" type="text" matInput name="name" [(ngModel)]="addSkuName" required>
+        </mat-form-field>
+      </div>
+
+      <div class="sameRow">
+        <mat-form-field>
+          <mat-label for="price">SKU Price:</mat-label>
+          <input formControlName="skuPriceFormControl" type="number" matInput name="price" [(ngModel)]="addSkuPrice" required>
+        </mat-form-field>
+
+        <button class="inputButton" mat-raised-button [disabled]="!companySearchFormGroup.valid" (click)="addSku(addSkuName, companySearchBoxData, addSkuPrice)">Add Sku</button>
+      </div>      
+    </form>
+  </div>
+  
   
   
   
