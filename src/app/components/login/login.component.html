@@ -1,16 +1,16 @@
-<div class="loginCardContainer">
+<div class="entryCardContainer">
     <form #loginForm="ngForm">
-        <mat-card class="loginCard">
-            <mat-form-field class="loginFormField">
+        <mat-card class="entryCard">
+            <mat-form-field class="textFormField">
                 <mat-label for="userName">UserName:</mat-label>
                 <input matInput placeholder="User Name" type="text" name="userName" id="userName" value="userName" [(ngModel)]="userName" required>
             </mat-form-field><br>
-            <mat-form-field class="passwordFormField">
+            <mat-form-field class="textFormField">
                 <mat-label for="password">Password:</mat-label>
                 <input matInput placeholder="Password" type="password" name="password" id="password" value="password" [(ngModel)]="password" required>
             </mat-form-field>
             <br>
-            <button mat-raised-button class="loginUser" (click)="loginUser()" [disabled]="!loginForm.form.valid">Login</button><br>
+            <button mat-raised-button class="entryrUser inputButton" (click)="loginUser()" [disabled]="!loginForm.form.valid">Login</button><br>
             {{message}}
         </mat-card>
     </form>

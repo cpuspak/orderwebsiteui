@@ -11,7 +11,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <mat-label for="shopName">shop name:</mat-label>
+                <mat-label for="shopName">Shop name:</mat-label>
             
                 <input formControlName="shopNameFormControl" matInput name="shopName" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="shopNameSearchBoxData" required/>
                       
@@ -31,9 +31,11 @@
                 </mat-autocomplete>
             </mat-form-field>
         </div>
-
-        <button class="sameRow inputButton" mat-raised-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid || !shopId">Create Order</button>
-    
+        <div class="sameRow">
+            <button class="inputButton" mat-raised-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid || !shopId">Create Order</button>
+            <button class="inputButton" mat-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid || !shopId">View All Orders</button>    
+        </div>
+        
     </form>
     
     
