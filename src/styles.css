@@ -64,3 +64,52 @@ body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     max-width: 40vw;
     justify-content: center;
 }
+.inputButtonDialog {
+    color: white !important;
+    background: rgb(250, 130, 45) !important;
+    max-width: 40vw;
+    justify-content: center;
+}
+.inputButtonDialog:disabled {
+    color: white !important;
+    background: rgb(245, 160, 100) !important;
+    max-width: 40vw;
+    justify-content: center;
+}
+
+
+/* Login & Register  */
+.entryCardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(245, 202, 163);
+}
+
+.entryCard {
+    width: 50vw;
+    height: 40vh;
+    max-width: 500px;
+    padding: 5px;
+    min-height: 300px;
+    min-width: 350px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(245, 202, 163) !important;
+    border: 2px solid rgba(255, 60, 0, 0.336) !important;
+}
+
+.textFormField {
+    max-width: 450px;
+    min-width: 300px;
+    
+}
+
+.entryUser {
+    align-self: center;
+    width: 50px;
+    height: 50px;
+}

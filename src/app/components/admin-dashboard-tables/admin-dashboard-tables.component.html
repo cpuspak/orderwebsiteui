@@ -1,24 +1,52 @@
 <div class="tableInfo">
-    <span>Order Date - {{tableHeaders.OrderDate}}</span>
-    <span>Order Number - {{tableHeaders.OrderNumber}}</span>
-    <span>Shop Location - {{tableHeaders.ShopLocation}}</span>
-    <span>Shop Name - {{tableHeaders.ShopName}}</span>
+  <div class="same_col">
+    <div style="font-weight: 600; font-size: medium; color: rgb(245, 160, 100);">
+      {{tableHeaders.OrderDate | date:'dd-MMM-yyyy HH:mm:ss'}}
+    </div>
+    <div style="font-weight: 1000; font-size: medium; color: rgb(245, 130, 45);">
+      #{{tableHeaders.OrderNumber}}
+    </div>
+  </div>
+  
+  <div class="same_col">
+    <div style="font-weight: 1000; font-size: large; color: rgb(250, 130, 45);">
+      {{tableHeaders.ShopName}}
+    </div>
+    <div style="font-weight: 200; font-size: small; color: rgb(245, 160, 100);">
+      {{tableHeaders.ShopAddress}}
+    </div>
+  </div>
+
+  <div class="same_col">
+    <div>
+      <span style="font-weight: 200; font-size: small; color: rgb(245, 160, 100);">
+        Beat - 
+      </span>
+      <span style="font-weight: 600; font-size: medium; color: rgb(245, 160, 100);">
+        {{tableHeaders.ShopLocation}}
+      </span>
+    </div>
+    <div style="font-weight: 600; font-size: medium; color: rgb(245, 160, 100);">
+      Ph - {{tableHeaders.ShopPhoneNumber}}
+    </div>
+  </div>
+  
 </div>
 <table mat-table [dataSource]="items" class="mat-elevation-z8">
   
     <ng-container matColumnDef="ItemID">
-      <th mat-header-cell *matHeaderCellDef> ItemID. </th>
+      <th mat-header-cell *matHeaderCellDef> # </th>
       <td mat-cell *matCellDef="let element"> {{element.ItemID}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="ProductName">
+      <th mat-header-cell *matHeaderCellDef> SKUName </th>
+      <td mat-cell *matCellDef="let element"> {{element.ProductName}} </td>
     </ng-container>
   
     <ng-container matColumnDef="MRP">
       <th mat-header-cell *matHeaderCellDef> MRP </th>
       <td mat-cell *matCellDef="let element"> {{element.MRP}} </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="ProductName">
-      <th mat-header-cell *matHeaderCellDef> ProductName </th>
-      <td mat-cell *matCellDef="let element"> {{element.ProductName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Quantity">
@@ -26,7 +54,6 @@
         <td mat-cell *matCellDef="let element"> {{element.Quantity}} </td>
       </ng-container>
     
-  
     <tr mat-header-row *matHeaderRowDef="columnHeader"></tr>
     <tr mat-row *matRowDef="let row; columns: columnHeader;"></tr>
   </table>

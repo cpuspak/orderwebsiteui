@@ -33,7 +33,7 @@
     
     
     <div class="buttonDiv">
-        <button class="inputButton" (click)="createItem(orderId, SkuID, Quantity)" mat-raised-button [disabled]="!skuNameSearchFormGroup.valid || !SkuID">Add Item</button>
+        <button class="inputButtonDialog" (click)="createItem(orderId, SkuID, Quantity)" mat-raised-button [disabled]="!skuNameSearchFormGroup.valid || !SkuID">Add Item</button>
         <button (click)="closeDialog()" mat-raised-button>Cancel</button>
     </div>
     

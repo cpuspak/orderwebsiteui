@@ -6,13 +6,15 @@
     background-color:  rgb(250, 130, 45);
 }
 .navButton {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Brush Script MT', cursive;
     font-weight: bold;
+    border: rgb(245, 160, 100) 1px groove;
+    margin-left: 1vw;
 }
 
-.navButtonSmall {
-
-}
+/* .navButtonSmall {
+    
+} */
 
 @media only screen and
 (max-width : 480px) {

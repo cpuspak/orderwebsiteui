@@ -1,6 +1,6 @@
-<div class="registerCardContainer">
+<div class="entryCardContainer">
     <form #registerForm="ngForm">
-        <mat-card class="registerCard">
+        <mat-card class="entryCard">
             <mat-form-field class="textFormField">
                 <mat-label for="userName">UserName:</mat-label>
                 <input matInput placeholder="User Name" type="text" name="userName" id="userName" value="userName" [(ngModel)]="userName" required>
@@ -14,7 +14,7 @@
                 <input matInput placeholder="Password" type="password" name="password" id="password" value="password" [(ngModel)]="password" required>
             </mat-form-field>
             <br>
-            <button mat-raised-button class="registerUser" (click)="registerUser()" [disabled]="!registerForm.form.valid">Register</button><br>
+            <button mat-raised-button class="entryrUser inputButton" (click)="registerUser()" [disabled]="!registerForm.form.valid">Register</button><br>
             {{message}}
         </mat-card>
     </form>

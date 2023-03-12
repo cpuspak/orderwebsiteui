@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./admin-dashboard-tables.component.css']
 })
 export class AdminDashboardTablesComponent implements OnInit {
-  columnHeader: Array<string> = ["ItemID", "MRP", "ProductName", "Quantity"]
+  columnHeader: Array<string> = ["ItemID", "ProductName", "MRP", "Quantity"]
   @Input() items!: any
   @Input() tableHeaders!: any
 
