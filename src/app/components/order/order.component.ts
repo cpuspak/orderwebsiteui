@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DataDeleteService } from 'src/app/services/dataDelete.service/data-delete.service';
 import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.service';
 import { AddItemComponent } from '../add-item/add-item.component';
 
@@ -12,6 +13,7 @@ export class OrderComponent implements OnInit {
   @Input() orderId!: number
   @Input() shopId!: number
   @Input() createTime!: string
+  @Output() deleteOrderEvent = new EventEmitter()
 
   shopName!: string
   items!: any
@@ -20,7 +22,8 @@ export class OrderComponent implements OnInit {
   panelOpenState: boolean = false
 
   constructor(private dataFetch: DataFetchService,
-              private dialog: MatDialog){}
+              private dialog: MatDialog,
+              private dataDelete: DataDeleteService){}
   ngOnInit(): void {
     this.fetchShopNameFromId()
     this.refreshItemsList(this.orderId)
@@ -69,5 +72,9 @@ export class OrderComponent implements OnInit {
   getFormattedTime() {
     
     return new Date(this.createTime).toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
+  }
+
+  deleteOrder() {
+    this.deleteOrderEvent.emit('')
   }
 }

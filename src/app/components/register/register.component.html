@@ -15,6 +15,7 @@
             </mat-form-field>
             <br>
             <button mat-raised-button class="entryrUser inputButton" (click)="registerUser()" [disabled]="!registerForm.form.valid">Register</button><br>
+            <div *ngIf="loading"><app-loading></app-loading></div>
             {{message}}
         </mat-card>
     </form>

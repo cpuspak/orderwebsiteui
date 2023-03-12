@@ -26,7 +26,7 @@
     <!-- <app-add-item [orderId]="orderId" (newItemAddedEvent)="refreshItemsList(orderId)"></app-add-item> -->
     <div class="sameRow">
         <button (click)="openAddItemDialog()" mat-button style="background-color: rgb(250, 130, 45); color: white;">Add Item</button>
-        <button (click)="openAddItemDialog()" mat-button style="background-color: rgb(255, 0, 0); color: white; font-weight: bold;">Delete Order</button>
+        <button (click)="deleteOrder()" mat-button style="background-color: rgb(255, 0, 0); color: white; font-weight: bold;">Delete Order</button>
     </div>
     
     <div *ngIf="loading || !items">

@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   password: string = ""
   message: string = ""
   adminLogin: boolean = false;
+  loading: boolean = false
   constructor(private loginService: LoginService,
               private commonService: CommonService) { }
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(){
+    this.loading = true
     this.message = ""
     this.loginService.generateToken(this.userName, this.password).subscribe((res: any) => {
       if(res && res.token){
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
 
           this.loginService.setLoginInfos(res)
           this.message = ""
+          
           if (this.adminLogin) {
             window.location.href = "admin"
           } else {
@@ -40,7 +43,11 @@ export class LoginComponent implements OnInit {
           this.message = "error!"
         }
       } else this.message = "error!"
-    }, err => this.message = "error!")
+      this.loading = false
+    }, err => {
+      this.message = "error!"
+      this.loading = false
+    })
     
   }
 }

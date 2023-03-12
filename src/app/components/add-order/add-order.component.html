@@ -45,7 +45,7 @@
             <app-loading></app-loading>
         </div>
         <div *ngFor="let element of orderList">
-            <app-order [orderId]="element.OrderID" [createTime]="element.CreatedTime" [shopId]="element.ShopID"></app-order>
+            <app-order [orderId]="element.OrderID" [createTime]="element.CreatedTime" [shopId]="element.ShopID" (deleteOrderEvent)="deleteOrder(element.OrderID)"></app-order>
         </div>
     </div>
     

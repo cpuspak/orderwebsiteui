@@ -10,7 +10,9 @@
                 <input matInput placeholder="Password" type="password" name="password" id="password" value="password" [(ngModel)]="password" required>
             </mat-form-field>
             <br>
-            <button mat-raised-button class="entryrUser inputButton" (click)="loginUser()" [disabled]="!loginForm.form.valid">Login</button><br>
+            <button mat-raised-button class="entryrUser inputButton" (click)="loginUser()" [disabled]="!loginForm.form.valid">Login</button>
+            <div *ngIf="loading"><app-loading></app-loading></div>
+            <br>
             {{message}}
         </mat-card>
     </form>

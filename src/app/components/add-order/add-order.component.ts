@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { tap, debounceTime } from 'rxjs';
 import { DataAddService } from 'src/app/services/dataAdd.service/data-add.service';
+import { DataDeleteService } from 'src/app/services/dataDelete.service/data-delete.service';
 import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.service';
 
 @Component({
@@ -29,6 +30,7 @@ export class AddOrderComponent implements OnInit {
   filteredShopNames: Array<any> = []
   constructor(private dataFetch: DataFetchService,
               private dataAdd: DataAddService,
+              private dataDelete: DataDeleteService,
               private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
@@ -125,6 +127,19 @@ export class AddOrderComponent implements OnInit {
   public clearFormFields() {
     this.shopNameSearchBoxData = ""
     this.selectedLocation = ""
+  }
+
+  deleteOrder(orderID: any) {
+    this.loading = true
+    this.dataDelete.deleteOrderByOrderID(orderID).subscribe((res: any) => {
+      if (res) {
+        this.fetchList()
+      } else {
+        this.loading = false
+      }
+    }, error => {
+      this.loading = false
+    })
   }
   
 
