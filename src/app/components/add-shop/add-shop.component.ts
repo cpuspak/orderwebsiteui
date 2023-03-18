@@ -101,6 +101,7 @@ export class AddShopComponent {
     this.locationSearchBoxData = ""
     this.addPhone = ""
     this.commonService.clearSingleAdvancedSearchSubject.next("")
+    this.filterLocationName('')
   }
 
   getAdvanceDisableEvent(event: any) {

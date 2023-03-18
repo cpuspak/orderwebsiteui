@@ -5,7 +5,7 @@
     <form [formGroup]="companySearchFormGroup">
       <div class="sameRow">
         <!-- <mat-form-field> -->
-          <app-advanced-search-component *ngIf="filteredCompanies.length > 0" [label]="'Company Name'" [searchableList]="filteredCompanies" (disabledEventEmitter)="getSkuDisableEvent($event)" (advancedSearchValueEmitter)="getCompanyValue($event)"></app-advanced-search-component>
+          <app-advanced-search-component [label]="'Company Name'" [searchableList]="filteredCompanies" (disabledEventEmitter)="getSkuDisableEvent($event)" (advancedSearchValueEmitter)="getCompanyValue($event)"></app-advanced-search-component>
           <!-- <mat-label for="name">Company Name:</mat-label> -->
           <!-- <input type="text" matInput name="name" [(ngModel)]="addCompanyName"> -->
           <!-- <input formControlName="companyNameFormControl" matInput name="name" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="companySearchBoxData" required>
@@ -32,7 +32,7 @@
           <input formControlName="skuPriceFormControl" type="number" matInput name="price" [(ngModel)]="addSkuPrice" required>
         </mat-form-field>
 
-        <button class="inputButton" mat-raised-button [disabled]="!companySearchFormGroup.valid || companySearchSkuDisabledFlag" (click)="addSku(addSkuName, companySearchBoxData, addSkuPrice)">Add Sku</button>
+        <button class="inputButton" mat-raised-button [disabled]="!companySearchFormGroup.valid || !(companySearchBoxData.length > 0)" (click)="addSku(addSkuName, companySearchBoxData, addSkuPrice)">Add Sku</button>
       </div>      
     </form>
   </div>

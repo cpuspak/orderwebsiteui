@@ -17,7 +17,7 @@
                     </mat-option>
                 </mat-autocomplete>
         </mat-form-field> -->
-        <app-advanced-search-component *ngIf="filteredLocations.length > 0" [label]="'Beat'" [searchableList]="filteredLocations" (disabledEventEmitter)="getShopDisableEvent($event)" (advancedSearchValueEmitter)="getBeatValue($event)"></app-advanced-search-component>
+        <app-advanced-search-component [label]="'Beat'" [searchableList]="filteredLocations" (disabledEventEmitter)="getShopDisableEvent($event)" (advancedSearchValueEmitter)="getBeatValue($event)"></app-advanced-search-component>
 
         <mat-form-field>
           <mat-label for="name">Shop Name:</mat-label>
@@ -36,7 +36,7 @@
       </div>
       <!-- <app-advanced-search-component [label]="'advanceSearch1'" [searchableList]="advanceSearchArray" (disabledEventEmitter)="getAdvanceDisableEvent($event)"></app-advanced-search-component>
       <app-advanced-multi-search-component [dropdownList]="advanceSearchArray" [label]="'advancedMultiSearch1'" (selectedItemsEvent)="getMultiSelectedItems($event)"></app-advanced-multi-search-component> -->
-      <button class="inputButton sameRow" mat-raised-button (click)="addShop(addShopName, addPhone, addAddress, locationSearchBoxData)" [disabled]="!locationSearchFormGroup.valid || beatSearchShopDisabledFlag">Add Shop</button>
+      <button class="inputButton sameRow" mat-raised-button (click)="addShop(addShopName, addPhone, addAddress, locationSearchBoxData)" [disabled]="!locationSearchFormGroup.valid || !(locationSearchBoxData.length > 0)">Add Shop</button>
     </form>
     
   </div>

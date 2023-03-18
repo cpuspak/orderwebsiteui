@@ -100,6 +100,7 @@ export class AddSkuComponent implements OnInit {
     this.addCompanyName = ""
     this.companySearchBoxData = ""
     this.commonService.clearSingleAdvancedSearchSubject.next("")
+    this.filterCompanyName('')
   }
 
   getSkuDisableEvent(event: any) {
