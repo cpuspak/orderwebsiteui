@@ -1,0 +1,11 @@
+<ng-multiselect-dropdown
+  [placeholder]="label"
+  [settings]="dropdownSettings"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)"
+  (onDeSelect)="onItemDeselectt($event)"
+  (onDeSelectAll)="onDeselectAll($event)"
+>
+</ng-multiselect-dropdown>

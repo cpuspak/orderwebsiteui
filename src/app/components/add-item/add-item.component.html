@@ -1,7 +1,7 @@
 
 <div class="addItem">
     <form [formGroup]="skuNameSearchFormGroup">
-        <mat-form-field>
+        <!-- <mat-form-field>
             <mat-label for="skuName">SKUName:</mat-label> 
             <input formControlName="skuNameFormControl" matInput name="skuName" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="skuNameSearchBoxData" required>
                     
@@ -11,17 +11,14 @@
                 (click)="getSkuId($event, filteredSkuName.SKUID)"
                 [value]="filteredSkuName.SKUName"
                 >
-                    <!-- <app-participant-search-tab 
-                        class="parentClass"
-                        [participantName]="filteredParticipant.username"
-                    >
-                    </app-participant-search-tab> -->
                     {{filteredSkuName.SKUName}}
                 </mat-option>
             </mat-autocomplete>
         
             
-        </mat-form-field><br>
+        </mat-form-field> -->
+        <app-advanced-search-component *ngIf="filteredSkuNames.length > 0" [label]="'SkuName'" [searchableList]="filteredSkuNames" (disabledEventEmitter)="getItemDisableEvent($event)" (advancedSearchValueAndIdEmitter)="getSkuValueAndId($event)"></app-advanced-search-component>
+        <br>
         <mat-form-field>
             <mat-label for="quantity">Quantity:</mat-label>
             <input matInput formControlName="quantityFormControl" type="number" name="quantity" [(ngModel)]="Quantity" required>
@@ -33,7 +30,7 @@
     
     
     <div class="buttonDiv">
-        <button class="inputButtonDialog" (click)="createItem(orderId, SkuID, Quantity)" mat-raised-button [disabled]="!skuNameSearchFormGroup.valid || !SkuID">Add Item</button>
+        <button class="inputButtonDialog" (click)="createItem(orderId, SkuID, Quantity)" mat-raised-button [disabled]="!skuNameSearchFormGroup.valid || !SkuID || itemSearchShopDisabledFlag">Add Item</button>
         <button (click)="closeDialog()" mat-raised-button>Cancel</button>
     </div>
     

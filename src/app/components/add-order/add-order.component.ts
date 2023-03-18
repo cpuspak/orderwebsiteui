@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { tap, debounceTime } from 'rxjs';
+import { CommonService } from 'src/app/services/common.service/common.service';
 import { DataAddService } from 'src/app/services/dataAdd.service/data-add.service';
 import { DataDeleteService } from 'src/app/services/dataDelete.service/data-delete.service';
 import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.service';
@@ -18,12 +19,18 @@ export class AddOrderComponent implements OnInit {
   selectedLocation: string = ""
   shopNames: Array<any> = []
 
+  advancedSearchList: any = [
+
+  ]
+
   loading: boolean = false
 
   shopNameSearchBoxData: string = ""
-  shopNameSearchFormGroup = new FormGroup({
-    shopNameFormControl: new FormControl()
-  })
+  // shopNameSearchFormGroup = new FormGroup({
+  //   shopNameFormControl: new FormControl()
+  // })
+
+  orderSearchShopDisabledFlag: boolean = true
   
   
 
@@ -31,12 +38,14 @@ export class AddOrderComponent implements OnInit {
   constructor(private dataFetch: DataFetchService,
               private dataAdd: DataAddService,
               private dataDelete: DataDeleteService,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder,
+              private commonService: CommonService) {}
 
   ngOnInit(): void {
+      this.filterShopNames('')
       this.fetchList()
       this.fetchLocations("")
-      this.initForm()
+      // this.initForm()
       
   }
   private fetchList() {
@@ -76,37 +85,43 @@ export class AddOrderComponent implements OnInit {
   //   })
   // }
 
-  initForm() {
-    this.shopNameSearchFormGroup = this.formBuilder.group({
-      'shopNameFormControl': ['']
-    })
-    this.shopNameSearchFormGroup.get('shopNameFormControl')!.valueChanges
-    .pipe(tap(res => {
-      this.filteredShopNames = []
-    }))
-    .pipe(debounceTime(900))
-    .subscribe((res: any) => {
-      if(res && res.length > 0){
-        console.log(res)
-        this.filterShopNames(res);
-        // this.participantEvent.emit(res)
-      }
-      else this.filteredShopNames = []
-    })
-  }
+  // initForm() {
+  //   this.shopNameSearchFormGroup = this.formBuilder.group({
+  //     'shopNameFormControl': ['']
+  //   })
+  //   this.shopNameSearchFormGroup.get('shopNameFormControl')!.valueChanges
+  //   .pipe(tap(res => {
+  //     this.filteredShopNames = []
+  //   }))
+  //   .pipe(debounceTime(900))
+  //   .subscribe((res: any) => {
+  //     if(res && res.length > 0){
+  //       console.log(res)
+  //       this.filterShopNames(res);
+  //       // this.participantEvent.emit(res)
+  //     }
+  //     else this.filteredShopNames = []
+  //   })
+  // }
 
   private filterShopNames(shopName: any) {
     console.log("filtered shop name")
     if (this.selectedLocation.length == 0){
-      this.dataFetch.fetchShops(this.shopNameSearchBoxData).subscribe((res: any) => {
-        if (res && res["Shops"])
+      this.dataFetch.fetchShops(shopName).subscribe((res: any) => {
+        if (res && res["Shops"]){
           this.filteredShopNames = res["Shops"]
+          this.formatShopListForAdvancedSearch()
+        }
+          
       })
     } else {
-      this.dataFetch.fetchShopsViaLocation(this.shopNameSearchBoxData, this.selectedLocation).subscribe((res: any) => {
+      this.dataFetch.fetchShopsViaLocation(this.selectedLocation).subscribe((res: any) => {
         console.log(res, this.shopNameSearchBoxData)
-        if (res && res["Shops"])
+        if (res && res["Shops"]){
           this.filteredShopNames = res["Shops"]
+          this.formatShopListForAdvancedSearch()
+        }
+          
       })
     }
       
@@ -114,6 +129,9 @@ export class AddOrderComponent implements OnInit {
 
   public resetShopName() {
     this.shopNameSearchBoxData = ""
+    this.filterShopNames('')
+    this.orderSearchShopDisabledFlag = true
+
   }
 
   public getShopId(event: any, ShopID: any) {
@@ -140,6 +158,26 @@ export class AddOrderComponent implements OnInit {
     }, error => {
       this.loading = false
     })
+  }
+
+  getOrderDisableEvent(event: any) {
+    this.orderSearchShopDisabledFlag = event
+  }
+
+  // getSkuValue(event: any) {
+  //   this.skuNameSearchBoxData = event
+  //   this.SkuID = event.ID
+  //   console.log(this.skuNameSearchBoxData, event)
+  // }
+
+  getShopValueAndId(event: any) {
+    this.shopNameSearchBoxData = event.Name
+    this.shopId = event.ID
+    console.log(event)
+  }
+
+  formatShopListForAdvancedSearch() {
+    this.filteredShopNames = this.commonService.formatForAdvancedSearch(this.filteredShopNames, "ShopID", "ShopName")
   }
   
 

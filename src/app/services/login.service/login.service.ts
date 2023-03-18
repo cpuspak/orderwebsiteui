@@ -71,6 +71,10 @@ export class LoginService {
     }
   }
 
+  getToken() {
+    return localStorage.getItem("id_token")
+  }
+
 
 
   logout() {

@@ -21,10 +21,12 @@ export class AddItemComponent implements OnInit {
   skuNameSearchBoxData: string = ""
   orderId!: number;
 
+  itemSearchShopDisabledFlag: boolean = true
+
   filteredSkuNames: Array<any> = []
 
   skuNameSearchFormGroup = new FormGroup({
-    skuNameFormControl: new FormControl(''),
+    // skuNameFormControl: new FormControl(''),
     quantityFormControl: new FormControl('')
   })
 
@@ -36,7 +38,8 @@ export class AddItemComponent implements OnInit {
               public dialogRef: MatDialogRef<AddItemComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private formBuilder: FormBuilder,
-              private dataFetch: DataFetchService){}
+              private dataFetch: DataFetchService,
+              private commonService: CommonService){}
 
   // public createItem(orderId: number, SkuID: number, Quantity: number) {
   //   this.dataAdd.addItem(orderId, SkuID, Quantity).subscribe((res: any) => {
@@ -47,6 +50,7 @@ export class AddItemComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+    this.filterSkuNames('')
     this.initForm()
     this.orderId = this.data.orderId
     
@@ -76,21 +80,21 @@ export class AddItemComponent implements OnInit {
 
   initForm() {
     this.skuNameSearchFormGroup = this.formBuilder.group({
-      'skuNameFormControl': [''],
+      // 'skuNameFormControl': [''],
       'quantityFormControl': ['']
     })
-    this.skuNameSearchFormGroup.get('skuNameFormControl')!.valueChanges
-    .pipe(tap(res => {
-      this.filteredSkuNames = []
-    }))
-    .pipe(debounceTime(900))
-    .subscribe((res: any) => {
-      if(res && res.length > 0){
-        this.filterSkuNames(res);
-        // this.participantEvent.emit(res)
-      }
-      else this.filteredSkuNames = []
-    })
+    // this.skuNameSearchFormGroup.get('skuNameFormControl')!.valueChanges
+    // .pipe(tap(res => {
+    //   this.filteredSkuNames = []
+    // }))
+    // .pipe(debounceTime(900))
+    // .subscribe((res: any) => {
+    //   if(res && res.length > 0){
+    //     this.filterSkuNames(res);
+    //     // this.participantEvent.emit(res)
+    //   }
+    //   else this.filteredSkuNames = []
+    // })
   }
 
   filterSkuNames(skuName: any) {
@@ -98,7 +102,28 @@ export class AddItemComponent implements OnInit {
       console.log(res)
       if (res && res["Skus"]){
         this.filteredSkuNames = res["Skus"]
+        this.formatSkuListForAdvancedSearch()
       }
     })
+  }
+
+  getItemDisableEvent(event: any) {
+    this.itemSearchShopDisabledFlag = event
+  }
+
+  // getSkuValue(event: any) {
+  //   this.skuNameSearchBoxData = event
+  //   this.SkuID = event.ID
+  //   console.log(this.skuNameSearchBoxData, event)
+  // }
+
+  getSkuValueAndId(event: any) {
+    this.skuNameSearchBoxData = event.Name
+    this.SkuID = event.ID
+    console.log(event)
+  }
+
+  formatSkuListForAdvancedSearch() {
+    this.filteredSkuNames = this.commonService.formatForAdvancedSearch(this.filteredSkuNames, "SKUID", "SKUName")
   }
 }

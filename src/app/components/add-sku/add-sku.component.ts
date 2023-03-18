@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { debounceTime, tap } from 'rxjs';
+import { CommonService } from 'src/app/services/common.service/common.service';
 import { DataAddService } from 'src/app/services/dataAdd.service/data-add.service';
 import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.service';
 
@@ -19,19 +20,25 @@ export class AddSkuComponent implements OnInit {
   addSkuPrice: number = 0
   companySearchBoxData: string = ""
   filteredCompanies: Array<any> = []
+  companySearchSkuDisabledFlag: boolean = true
+
   // companySearchFormGroup!: FormGroup
   companySearchFormGroup = new FormGroup({
-    companyNameFormControl: new FormControl(''),
+    // companyNameFormControl: new FormControl(''),
     skuNameFormControl: new FormControl(''),
     skuPriceFormControl: new FormControl('')
   });
 
   constructor(private dataFetch: DataFetchService,
               private dataAdd: DataAddService,
-              private formBuilder: FormBuilder){}
+              private formBuilder: FormBuilder,
+              private commonService: CommonService){}
   ngOnInit(): void {
       this.fetchSkuList('')
+      this.filterCompanyName('')
       this.initForm()
+      // this.filterCompanyName('')
+
   }
 
   private fetchSkuList(skuName: string) {
@@ -54,23 +61,23 @@ export class AddSkuComponent implements OnInit {
 
   initForm() {
     this.companySearchFormGroup = this.formBuilder.group({
-      'companyNameFormControl': [''],
+      // 'companyNameFormControl': [''],
       'skuNameFormControl': [''],
       'skuPriceFormControl': ['']
     })
-    this.companySearchFormGroup.get('companyNameFormControl')!.valueChanges
-    .pipe(tap(res => {
-      this.filteredCompanies = []
-    }))
-    .pipe(debounceTime(900))
-    .subscribe((res: any) => {
-      if(res && res.length > 0){
-        console.log(res)
-        this.filterCompanyName(res);
-        // this.participantEvent.emit(res)
-      }
-      else this.filteredCompanies = []
-    })
+    // this.companySearchFormGroup.get('companyNameFormControl')!.valueChanges
+    // .pipe(tap(res => {
+    //   this.filteredCompanies = []
+    // }))
+    // .pipe(debounceTime(900))
+    // .subscribe((res: any) => {
+    //   if(res && res.length > 0){
+    //     console.log(res)
+    //     this.filterCompanyName(res);
+    //     // this.participantEvent.emit(res)
+    //   }
+    //   else this.filteredCompanies = []
+    // })
   }
 
   filterCompanyName(companyName: string) {
@@ -78,8 +85,11 @@ export class AddSkuComponent implements OnInit {
     this.filteredCompanies = []
     this.dataFetch.fetchCompanies(companyName).subscribe((res: any) => {
       console.log(res)
-      if (res && res["Companies"])
+      if (res && res["Companies"]){
         this.filteredCompanies = res["Companies"]
+        this.formatCompanyNameListForAdvancedSearch()
+      }
+        
     })
 
   }
@@ -89,6 +99,20 @@ export class AddSkuComponent implements OnInit {
     this.addSkuPrice = 0
     this.addCompanyName = ""
     this.companySearchBoxData = ""
+    this.commonService.clearSingleAdvancedSearchSubject.next("")
+  }
+
+  getSkuDisableEvent(event: any) {
+    this.companySearchSkuDisabledFlag = event
+  }
+
+  formatCompanyNameListForAdvancedSearch() {
+    this.filteredCompanies = this.commonService.formatForAdvancedSearch(this.filteredCompanies, null, "CompanyName")
+  }
+
+  getCompanyValue(event: any) {
+    this.companySearchBoxData = event
+    console.log(this.companySearchBoxData, event)
   }
 
 

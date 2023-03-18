@@ -1,5 +1,6 @@
 <div class="addOrder">
-    <form [formGroup]="shopNameSearchFormGroup">
+    <!-- <form [formGroup]="shopNameSearchFormGroup"> -->
+    <form>
         <div class="sameRow">
             <mat-form-field>
                 <mat-label>Location</mat-label>
@@ -10,7 +11,8 @@
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field>
+            <app-advanced-search-component *ngIf="filteredShopNames.length > 0" [label]="'ShopName'" [searchableList]="filteredShopNames" (disabledEventEmitter)="getOrderDisableEvent($event)" (advancedSearchValueAndIdEmitter)="getShopValueAndId($event)"></app-advanced-search-component>
+            <!-- <mat-form-field>
                 <mat-label for="shopName">Shop name:</mat-label>
             
                 <input formControlName="shopNameFormControl" matInput name="shopName" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="shopNameSearchBoxData" required/>
@@ -21,19 +23,14 @@
                     [id]="filteredShopName.ShopID" 
                     (click)="getShopId($event, filteredShopName.ShopID)"
                     >
-                        <!-- <app-participant-search-tab 
-                            class="parentClass"
-                            [participantName]="filteredParticipant.username"
-                        >
-                        </app-participant-search-tab> -->
                         {{filteredShopName.ShopName}}
                     </mat-option>
                 </mat-autocomplete>
-            </mat-form-field>
+            </mat-form-field> -->
         </div>
         <div class="sameRow">
-            <button class="inputButton" mat-raised-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid || !shopId">Create Order</button>
-            <button class="inputButton" mat-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid || !shopId">View All Orders</button>    
+            <button class="inputButton" mat-raised-button (click)="addOrder(shopId)" [disabled]="orderSearchShopDisabledFlag || !shopId">Create Order</button>
+            <!-- <button class="inputButton" mat-button (click)="addOrder(shopId)" [disabled]="!shopNameSearchFormGroup.valid || !shopId">View All Orders</button>     -->
         </div>
         
     </form>
@@ -48,5 +45,4 @@
             <app-order [orderId]="element.OrderID" [createTime]="element.CreatedTime" [shopId]="element.ShopID" (deleteOrderEvent)="deleteOrder(element.OrderID)"></app-order>
         </div>
     </div>
-    
 </div>

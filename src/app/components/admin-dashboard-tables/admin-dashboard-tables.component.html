@@ -3,9 +3,12 @@
     <div style="font-weight: 600; font-size: medium; color: rgb(245, 160, 100);">
       {{tableHeaders.OrderDate | date:'dd-MMM-yyyy HH:mm:ss'}}
     </div>
-    <div style="font-weight: 1000; font-size: medium; color: rgb(245, 130, 45);">
-      #{{tableHeaders.OrderNumber}}
+    <div>
+      <span style="font-weight: 1000; font-size: medium; color: rgb(245, 130, 45);">#{{tableHeaders.OrderNumber}}</span>&nbsp;
+      <span style="font-weight: 200; font-size: small; color: rgb(245, 160, 100);">{{tableHeaders.AgentUserName}}</span>
     </div>
+      
+
   </div>
   
   <div class="same_col">

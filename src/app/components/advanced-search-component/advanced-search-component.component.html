@@ -1,0 +1,21 @@
+<form [formGroup]="advancedSearchFormGroup" *ngIf="filteredSearchItems">
+    
+
+    <mat-form-field>
+        <mat-label for="searchField">{{label}}</mat-label>
+    
+        <input formControlName="advancedSearchFormControl" matInput name="searchField" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="advancedSearchBoxData" required/>
+                
+        <mat-autocomplete #autocompleteLink="matAutocomplete">
+            <mat-option *ngFor="let filteredItem of filteredSearchItems" 
+                [value]="filteredItem.Name" 
+                [id]="filteredItem.ID" 
+                (click)="clickAction(filteredItem)"
+            >
+                {{filteredItem.Name}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+        
+    
+</form>

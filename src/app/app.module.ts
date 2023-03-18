@@ -43,7 +43,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AdminDashboardTablesComponent } from './components/admin-dashboard-tables/admin-dashboard-tables.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ItemTableComponent } from './components/item-table/item-table.component';
-
+import { AdvancedSearchComponentComponent } from './components/advanced-search-component/advanced-search-component.component';
+import { AdvancedMultiSearchComponentComponent } from './components/advanced-multi-search-component/advanced-multi-search-component.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 
@@ -69,7 +71,9 @@ import { ItemTableComponent } from './components/item-table/item-table.component
     AdminDashboardFiltersComponent,
     AdminDashboardTablesComponent,
     LoadingComponent,
-    ItemTableComponent
+    ItemTableComponent,
+    AdvancedSearchComponentComponent,
+    AdvancedMultiSearchComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +97,8 @@ import { ItemTableComponent } from './components/item-table/item-table.component
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]

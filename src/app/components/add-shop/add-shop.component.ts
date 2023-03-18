@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { debounceTime, tap } from 'rxjs';
+import { CommonService } from 'src/app/services/common.service/common.service';
 import { DataAddService } from 'src/app/services/dataAdd.service/data-add.service';
 import { DataFetchService } from 'src/app/services/dataFetch.service/data-fetch.service';
 
@@ -17,21 +18,40 @@ export class AddShopComponent {
   addPhone: string = ""
   addAddress: string = ""
   addLocation: string = ""
+  beatSearchShopDisabledFlag: boolean = true
+
+  advanceSearchArray: any = [
+    {
+      "ID":1,
+      "Name": "Name1"
+    },
+    {
+      "ID":2,
+      "Name": "Name2"
+    },
+    {
+      "ID":3,
+      "Name": "Name3"
+    }
+  ]
 
   locationSearchBoxData: string = ""
   filteredLocations: Array<any> = []
   locationSearchFormGroup = new FormGroup({
-    locationFormControl: new FormControl(''),
+    // locationFormControl: new FormControl(''),
     addressFormControl: new FormControl(''),
     shopNameFormControl: new FormControl(''),
     phoneFormControl: new FormControl('')
   });
   constructor(private dataFetch: DataFetchService,
               private dataAdd: DataAddService,
-              private formBuilder: FormBuilder){}
+              private formBuilder: FormBuilder,
+              private commonService: CommonService){}
   ngOnInit(): void {
+      this.filterLocationName('')
       this.fetchShopList('')
       this.initForm()
+      
   }
 
   private fetchShopList(shopName: string) {
@@ -54,23 +74,10 @@ export class AddShopComponent {
 
   initForm() {
     this.locationSearchFormGroup = this.formBuilder.group({
-      'locationFormControl': [''],
+      // 'locationFormControl': [''],
       'addressFormControl': [''],
       'shopNameFormControl': [''],
       'phoneFormControl': ['']
-    })
-    this.locationSearchFormGroup.get('locationFormControl')!.valueChanges
-    .pipe(tap(res => {
-      this.filteredLocations = []
-    }))
-    .pipe(debounceTime(900))
-    .subscribe((res: any) => {
-      if(res && res.length > 0){
-        console.log(res)
-        this.filterLocationName(res);
-        // this.participantEvent.emit(res)
-      }
-      else this.filteredLocations = []
     })
   }
 
@@ -79,8 +86,11 @@ export class AddShopComponent {
     this.filteredLocations = []
     this.dataFetch.fetchLocations(location).subscribe((res: any) => {
       console.log(res)
-      if (res && res["Locations"])
+      if (res && res["Locations"]) {
         this.filteredLocations = res["Locations"]
+        this.formatLocationNameListForAdvancedSearch()
+      }
+        
     })
 
   }
@@ -90,5 +100,27 @@ export class AddShopComponent {
     this.addShopName = ""
     this.locationSearchBoxData = ""
     this.addPhone = ""
+    this.commonService.clearSingleAdvancedSearchSubject.next("")
   }
+
+  getAdvanceDisableEvent(event: any) {
+    console.log("event ",event)
+  }
+  getMultiSelectedItems(event: any) {
+    console.log("multi select event", event)
+  }
+
+  getShopDisableEvent(event: any) {
+    this.beatSearchShopDisabledFlag = event
+  }
+
+  getBeatValue(event: any) {
+    this.locationSearchBoxData = event
+    console.log(this.locationSearchBoxData, event)
+  }
+
+  formatLocationNameListForAdvancedSearch() {
+    this.filteredLocations = this.commonService.formatForAdvancedSearch(this.filteredLocations, null, "LocationName")
+  }
+
 }

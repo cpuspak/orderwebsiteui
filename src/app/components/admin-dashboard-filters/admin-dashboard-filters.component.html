@@ -26,13 +26,17 @@
                 </mat-select>
             </mat-form-field>
             
-            <mat-form-field class="shopList">
+            <!-- <mat-form-field class="shopList">
                 <mat-label>Shops</mat-label>
                 <mat-select multiple [formControl]="shopFormControl" name="shopList" [(ngModel)]="selectedShops">
                     <mat-option *ngFor="let shop of shopList"  [value]="shop.ShopName" (click)="setShop(shop)">{{shop.ShopName}}</mat-option>
                    
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
+            <div class="shopList">
+                <app-advanced-multi-search-component [label]="'Shops'" [dropdownList]="formatListForAdvancedSearch(shopList, 'ShopID', 'ShopName')" (selectedItemsEvent)="getMultiSelectedItems($event)"></app-advanced-multi-search-component>
+            </div>
+            
         </div>       
     </div>
     <div class="filter_row3">

@@ -4,7 +4,7 @@
   <div>
     <form [formGroup]="locationSearchFormGroup">
       <div class="sameRow">
-        <mat-form-field>
+        <!-- <mat-form-field>
           <mat-label for="location">Beat :</mat-label>
           <input formControlName="locationFormControl" matInput name="location" type="text" [matAutocomplete]="autocompleteLink" [(ngModel)]="locationSearchBoxData" required>
                 
@@ -13,20 +13,16 @@
                     [value]="filteredLocation.LocationName" 
                     [id]="filteredLocation.LocationName" 
                     >
-                        <!-- <app-participant-search-tab 
-                            class="parentClass"
-                            [participantName]="filteredParticipant.username"
-                        >
-                        </app-participant-search-tab> -->
                         {{filteredLocation.LocationName}}
                     </mat-option>
                 </mat-autocomplete>
-        </mat-form-field>
+        </mat-form-field> -->
+        <app-advanced-search-component *ngIf="filteredLocations.length > 0" [label]="'Beat'" [searchableList]="filteredLocations" (disabledEventEmitter)="getShopDisableEvent($event)" (advancedSearchValueEmitter)="getBeatValue($event)"></app-advanced-search-component>
 
-      <mat-form-field>
-        <mat-label for="name">Shop Name:</mat-label>
-        <input type="text" matInput formControlName="shopNameFormControl" name="Name" type="text" [(ngModel)]="addShopName" required>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-label for="name">Shop Name:</mat-label>
+          <input type="text" matInput formControlName="shopNameFormControl" name="Name" type="text" [(ngModel)]="addShopName" required>
+        </mat-form-field>
       </div>
       <div class="sameRow">
         <mat-form-field>
@@ -38,7 +34,9 @@
           <input type="text" formControlName="addressFormControl" matInput name="address" type="text" [(ngModel)]="addAddress" required>
         </mat-form-field>
       </div>
-      <button class="inputButton sameRow" mat-raised-button (click)="addShop(addShopName, addPhone, addAddress, locationSearchBoxData)" [disabled]="!locationSearchFormGroup.valid">Add Shop</button>
+      <!-- <app-advanced-search-component [label]="'advanceSearch1'" [searchableList]="advanceSearchArray" (disabledEventEmitter)="getAdvanceDisableEvent($event)"></app-advanced-search-component>
+      <app-advanced-multi-search-component [dropdownList]="advanceSearchArray" [label]="'advancedMultiSearch1'" (selectedItemsEvent)="getMultiSelectedItems($event)"></app-advanced-multi-search-component> -->
+      <button class="inputButton sameRow" mat-raised-button (click)="addShop(addShopName, addPhone, addAddress, locationSearchBoxData)" [disabled]="!locationSearchFormGroup.valid || beatSearchShopDisabledFlag">Add Shop</button>
     </form>
     
   </div>

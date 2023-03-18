@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { CommonService } from 'src/app/services/common.service/common.service';
 
 @Component({
   selector: 'app-admin-dashboard-filters',
@@ -28,7 +29,7 @@ export class AdminDashboardFiltersComponent implements OnInit {
   selectedShops!: any
   selectedLocation!: any
 
-
+  constructor(private commonService: CommonService){}
 
   ngOnInit(): void {
     console.log(this.shopList, this.locationList)
@@ -106,5 +107,18 @@ export class AdminDashboardFiltersComponent implements OnInit {
     this.selectedShops = undefined;
     this.shopIdList = undefined;
     this.location = undefined
+    this.commonService.clearAdminFiltersSubject.next('')
+  }
+
+  formatListForAdvancedSearch(list: any, idKey: any, nameKey: any) {
+    return this.commonService.formatForAdvancedSearch(list, idKey, nameKey)
+  }
+
+  getMultiSelectedItems(event: any) {
+    console.log(event)
+    this.shopIdList = []
+    event.forEach((element: any) => {
+      this.shopIdList.push(element.ID)
+    })
   }
 }

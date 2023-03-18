@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.filter_row1, .filter_row2 {
+.filter_row1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -39,3 +39,17 @@
     }
 }
 
+.shopList {
+    width: 50%;
+}
+
+.filter_row2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.locationList {
+    width: 45%;
+}
