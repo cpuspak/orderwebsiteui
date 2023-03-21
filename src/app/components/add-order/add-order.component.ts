@@ -58,6 +58,7 @@ export class AddOrderComponent implements OnInit {
         })
         this.loading = false
         this.clearFormFields()
+        this.resetShopName()
       }
     })
   }
